@@ -1,0 +1,93 @@
+<footer class="blue white_t container front-page">				  
+  <nav class="row m-top" style='margin-top:1em'>
+    <h1 class='element-invisible'>Footer Navigation</h1>
+    <div class="twocol">
+	    <div itemscope itemtype="http://schema.org/LocalBusiness" class="center m-bottom">
+	    <p class="bold fs5" itemprop="name"><a href=''><img class="toggle_color" src="/static/img/footerlogo.png" alt="Logo" ></a></p>
+	    <span class="invis" itemprop="description"> Custom websites and graphic design.</span>
+	    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+	      <p itemprop="streetAddress">PO Box 33525</p>
+	      <span itemprop="addressLocality">Dayton</span>,
+	      <span itemprop="addressRegion">OH</span>
+	      <span>45433</span>
+	    </div>
+	    <span itemprop="telephone">937.308.3316</span>
+	    <p><a href='mailto&#58;i&#110;%66&#111;%40&#98;%72%67don&#37;6Cine&#46;%63&#37;6Fm'>Email Us</a></p>
+	  </div>	  
+      </div>
+    <div class='twocol'>
+      <h2 class="fs4"><a href='/about/' title='About page'>About</a></h2>		      
+      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/about">About Us</a></li><li class="indent not-active"><a href="/about/programs">Design Tools</a></li><li class="indent not-active"><a href="/about/our-process">Our Process</a></li></ul>			    
+    </div>
+    <div class='twocol'>
+      <h2 class="fs4"><a href='/services/' title='Services page'>Services</a></h2>
+      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/services/website-design">Website Design</a></li><li class="indent not-active"><a href="/services/corporate-identity">Corporate Identity</a></li><li class="indent not-active"><a href="/services/print-design/">Print Design</a></li><li class="indent not-active"><a href="/services/other-services">Other Services</a></li></ul>    </div>  
+  <div class="twocol">
+    <h2 class="fs4"><a href='/portfolio/' title='Portfolio page'>Portfolio</a></h2>
+      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/portfolio/website-design/">Website Design</a></li><li class="indent not-active"><a href="/portfolio/corporate-identity/">Corporate Identity</a></li><li class="indent not-active"><a href="/portfolio/print-design/">Print Design</a></li><li class="indent not-active"><a href="/portfolio/other-services/">Other Services</a></li></ul>    </div>  
+ <!-- <div class="twocol">
+    <h2 class="m-top fs4">Blog</h2>     
+    </div>  -->
+  <div class="twocol">
+    <h2 class="fs4"><a href='/client-portal/' title='Client Portal'>Client Portal</a></h2>
+      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/client-portal/">Log In</a></li><li class="indent not-active"><a href="/client-portal/">Register</a></li></ul>    </div> 
+   <div class="twocol last">
+    <h2 class="fs4"><a href='/contact/' title='Contact page'>Contact</a></h2>
+      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/contact/">Contact Us</a></li><li class="indent not-active"><a href="/contact/">Request a quote</a></li></ul>    </div>     							      	
+  </nav>
+<p class='ff1 center fs2 row'>Proudly serving the Dayton Ohio region</p>
+  <nav class="center m-top row">
+    <h1 class='element-invisible'>Social Media Links</h1>
+	<ul class="m-top horz-list twelvecol">
+		<li class="spaced"><a href="http://www.facebook.com/brgraphicdesign" title="Facebook"><img class="toggle_color" src="/static/img/facebookcolor.png" alt="Facebook" ></a></li>
+		<li class="spaced"><a href="http://www.twitter.com/brgraphicdesign" title="Twitter"><img class="toggle_color" src="/static/img/twittercolor.png" alt="Twitter" ></a></li>
+		<li class="spaced"><a href="http://www.pinterest.com/brgraphicdesign" title="Pinterest"><img class="toggle_color" src="/static/img/pinterestcolor.png" alt="Pinterest" ></a></li>
+		<li class="spaced"><a href="http://www.linkedin.com/company/1218779" title="LinkedIn"><img class="toggle_color" src="/static/img/linkedin.png" alt="LinkedIn" ></a></li>
+		<li class="spaced"><a href="/contact" title="Contact Us"><img class="toggle_color" src="/static/img/emailcolor.png" alt="Contact Us" ></a></li>
+	</ul>				
+      </nav>
+  <p class="m-top center fs3"><i>Copyright &copy; 2012-2013 BR Graphic Design LLC</i></p>
+</footer>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<script>  
+    $("a[rel]").overlay({mask: '#000'});  
+</script>
+<script type="text/javascript" src="/static/js/custom.js"></script>
+<script type="text/javascript">
+  $.noConflict();
+  $('.coda-slider').codaSlider({
+  autoSlideControls:true, 
+  dynamicTabsPosition:"bottom",
+  dynamicArrows:false,
+  dynamicTabsAlign:"left",
+  dynamicTabs:false,
+  autoSlide:true,
+  autoSlideInterval:4000
+  });
+</script>
+<script>
+$.ajaxSetup({ cache: false });
+// Display Latest Tweet
+    jQuery.get('/static/tweets.txt', function(data) {
+        var myvar = data;
+        $('#twitter-feed').append('<div id="twitter_text" class="brown">'+"<a href='http://twitter.com/brgraphicdesign' title='twitter'><img src='/static/img/twittergraphic.png' class='fl' id='twitter_img'></a>"+'<h1 class="fs1 ff1">Latest Tweet</h1><p class="fs3">'+data+'<br class="cf"></div></div>');
+    });
+</script>
+
+<!--<script type="text/javascript" defer>
+
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-19724086-1']);
+ _gaq.push(['_trackPageview']);
+
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>-->
+
+
+
+ </body>
+ </html>

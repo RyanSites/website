@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block sidebar_nav %} 
+  <nav class="m-bottom">
+    <h2 style="margin-bottom:0px" class="">Clients</h2>
+    <ul>  
+      {% for slug, title in navigation %}
+        <li><a {% if request.path and slug in request.path  %} class='active'{% endif %} href="/clients/{{slug}}" title="{{title}}">{{title}}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}		
+<div id="" class="services">		  
+  <div class="portfolio-circle-wrapper threecol">
+    <div class="portfolio-circle">
+      <img style="left: 0px;" src="/static/img/websiteportfolio.jpg" class="circle-underlay">
+      <a title="Website Design Portfolio" href="/portfolio/website-design"><img src="/static/img/circle.png" class="circle"></a>	    
+    </div>	 
+    <p class="center circle-text"><a title="Website Design Portfolio" href="/portfolio/website-design">Website Design</a></p>
+  </div>
+  <div class="portfolio-circle-wrapper threecol">
+    <div class="portfolio-circle">
+      <img style="left: 0px;" src="/static/img/corporateidentityportfolio.jpg" class="circle-underlay">
+      <a title="Corporate Identity Portfolio" href="/portfolio/corporate-identity"><img src="/static/img/circle.png" class="circle"></a>	    
+    </div>	 
+    <p class="center circle-text"><a title="Corporate Identity Portfolio" href="/portfolio/corporate-identity">Corporate Identity</a></p>
+  </div>
+  <div class="portfolio-circle-wrapper threecol">
+    <div class="portfolio-circle">
+      <img src="/static/img/printdesignportfolio.jpg" class="circle-underlay">
+      <a title="Print Design Portfolio" href="/portfolio/print-design"><img src="/static/img/circle.png" class="circle"></a>	    
+    </div>	 
+    <p class="center circle-text"><a title="Print Design Portfolio" href="/portfolio/print-design">Print Design</a></p>
+  </div>
+  <div class="portfolio-circle-wrapper threecol last">
+    <div class="portfolio-circle">
+      <img style="margin-left:-15%;max-width:100%" src="/static/img/otherservicesportfolio.jpg" class="circle-underlay">
+      <a title="Other Services Portfolio" href="/portfolio/other-services"><img src="/static/img/circle.png" class="circle"></a>	    
+    </div>	 
+    <p class="center circle-text"><a title="Other Services Portfolio" href="/portfolio/other-services">Other Services</a></p>
+  </div>	
+</div>
+{% endblock %}	      

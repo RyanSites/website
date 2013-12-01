@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" name="add_post" enctype="multipart/form-data">
+    {{form.hidden_tag()}}    
+    <div>
+    	<label for='client_name'>Post Title*:</label>
+    	<div>{{form.title}}  </div>
+    </div>
+    <div>
+    	<label for='client_url'>Post Slug*:</label>
+    	<div>{{form.slug}}  </div>
+    </div>
+    <div>
+    	<label for='body'>Body*:</label>
+    	<div>{{form.body(rows=15,cols=50)}}  </div>
+    </div>
+    <div>
+        <label for='tags'>Tags:</label>
+        <div>{{form.tag}}</div>
+    </div>
+    <div>
+        <label for='category'>Categories:</label>
+        <div>{{form.category}}  </div>
+    </div>
+    <div>
+      <label for='Image'>Image*:</label>
+        <div>{{form.img}}  </div>
+     </div>
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% endblock %}

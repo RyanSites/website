@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for error in form.errors %}
+    <span style="color: red;">[{{error}}]</span>
+{% endfor %}
+<form action="" method="post" name="contact">
+    {{form.hidden_tag()}}
+    <div>
+      <label for='name'>Name*:</label>
+      <div>{{form.name}} </div>
+    </div>
+    <div>
+      <label for='company'>Company:</label>
+      <div>{{form.company}} </div>
+    </div>
+    <div>
+      <label for='phone_number'>Phone Number:</label>
+      <div>{{form.phone_number}} </div>
+    </div>
+    <div>
+      <label for='email'>Email*:</label>
+      <div>{{form.email}} </div>
+    </div>
+    <div>
+      <label for='preference'>How do you prefer to be contacted?</label>
+      <div>
+     {% for subfield in form.preference %}      
+          {{ subfield }}
+          {{ subfield.label }}      
+  	 {% endfor %}
+      </div>
+    </div>
+    <div>
+      <label for='body'>Message*:</label>
+      <div>{{form.body}}</div>
+      </div>
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% endblock %}

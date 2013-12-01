@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar_nav %}	
+	<nav class="m-bottom">
+		<h2 style="margin-bottom:0px" class="">Clients</h2>
+		<ul>	
+			{% for slug, title in navigation %}
+				<li><a {% if request.path and slug in request.path  %} class='active'{% endif %} href="/clients/{{slug}}" title="{{title}}">{{title}}</a></li>
+			{% endfor %}
+		</ul>
+	</nav>
+{% endblock %}
+
+{% block content %}		
+	{% for service in services %}
+		{{ make_slideshow(service[1], service[0], service[2]) }}
+	{% endfor %}
+{% endblock %}	      

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" name="add_testimonial">
+	{% for error in form.errors %}
+        <span style="color: red;">[{{error}}]</span>
+    {% endfor %}<br>
+    {{form.hidden_tag()}}
+    <div>
+    	<label for='poc'>POC Name</label>
+    	<div>{{form.poc}}</div>
+    </div>
+    <div>
+    	<label for='poc_title'>POC Title</label>
+    	<div>{{form.poc_title}}</div>
+    </div>
+    <div>
+    	<label for='poc_company'>POC Company</label>
+    	<div>{{form.poc_company}}</div>
+    </div>
+    <div>
+        <label for='client'>Client</label>
+        <div>{{form.client}}</div>
+    </div>
+    <div>
+    	<label for='body'>Body</label>
+    	<div>{{form.body}}</div>
+    </div>    
+	  <input type="submit" value="add">
+	</form>
+{% endblock %}

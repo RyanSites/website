@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% for error in form.errors %}
+        <span style="color: red;">[{{error}}]</span>
+    {% endfor %}<br>
+<form action="/add/service" method="post" name="add_service" enctype="multipart/form-data">	
+    {{form.hidden_tag()}}
+    <div>
+    	<label for='service_name'>Service Name</label>
+    	<div>{{form.service_name}}</div>
+    </div>
+    <div>
+    	<label for='service_types'>Service Types</label>
+    	<div>{{form.service_type}}</div>
+    </div>
+    <div>
+    	<label for='client'>Client</label>
+    	<div>{{form.client}}</div>
+    </div>
+    <div>
+    	<label for='body'>Body</label>
+    	<div>{{form.body}}</div>
+    </div>
+    <div>
+	  <input type="file" name="file" multiple>
+	 </div>
+	  <input type="submit" value="add">
+	</form>
+{% endblock %}

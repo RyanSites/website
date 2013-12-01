@@ -1,0 +1,145 @@
+{% macro make_slideshow(service, client, images) -%}
+<section class="fl row service m-bottom m-top green">
+  <div class="sevencol fl" style="">
+    <div style="" id="slider-{{service.id}}-wrapper" class="coda-slider-wrapper">
+    	<div style="" id="slider-{{service.id}}" class="coda-slider">
+			<div style="" class="panel-container">
+				{% for img in images %}
+					<div class="panel fl">
+						<div class="panel-wrapper">
+							<img alt="Slideshow slide" src="{{img.uri}}">
+						</div>
+					</div>
+				{% endfor %}
+		</div>    
+    </div>
+</div><!-- end slider section -->  
+</div>
+<div class="fivecol last service-description">
+	<div>
+		<h1 class="ff3 bold fs1">
+			<a title="Go to the client page" href="/clients/{{client.slug}}">{{service.title}}</a>
+		</h1>
+	  	<h2 class="element-invisible">For customer {{client.title}}</h2>
+		<time class="element-invisible" pubdate="{{service.timestamp}}">{{service.timestamp}}</time>
+	</div>
+	<div class="m-top">
+  		{{service.body}}
+	</div>	
+	<ul class="coda-nav twelvecol horz-list" id="tab-{{service.id}}">
+		{% for img in images %}
+	  	<li>
+	  		<a data-ref="slider-{{service.id}}" href="#{{loop.index}}">
+	  			<img class="slider-{{loop.index}}" src="/static/img/portfoliobulletoff.png">
+			</a>
+		</li>
+		{% endfor %}   
+	</ul>
+</div> 
+</section>
+{%- endmacro %}
+{% include 'head.html' %}
+<div id="page-wrapper" class="">
+  <header class="row">	  
+    <div class="sixcol">
+      <h1 id="our_logo">
+		<a href="" title="Home">
+		   <img alt="BR Graphic Design" src="/static/img/logo.jpg" class="">  
+		</a>
+      </h1>   
+    </div>
+    <time class='element-invisible' pubdate=''></time>	  	  
+    <div id="main-nav" class="sixcol last fr">
+      <div class="row" style="overflow:visible">
+		<aside id="twitter-feed" class="">		
+		</aside>
+      </div>
+	  	{% block main_navigation %}
+	  	<nav class="twelvecol">
+				<h1 class='element-invisible'>Main Navigation</h1>  			
+		    <ul class="fs2" >
+			     <li class="{% if request.endpoint and 'about' in request.endpoint %}active{% endif %}"><a href="/about" alt="About us">about</a></li>		      
+			     <li class="hli ff2">|</li>	
+			     <li class="{% if request.endpoint and 'services' in request.endpoint and 'portfolio' not in request.endpoint %}active{% endif %}"><a href="/services" alt="Services we offer">services</a></li>
+			     <li class="hli ff2">|</li>	
+			     <li class="{% if request.endpoint and ('portfolio' in request.endpoint or 'clients' in request.endpoint) %}active{% endif %}"><a href="{{url_for('portfolio')}}" alt="Our portfolio">portfolio</a></li>
+			     <li class="hli ff2">|</li>	
+			     <li class="{% if request.endpoint and 'blog' in request.endpoint %}active{% endif %}"><a href="{{url_for('blog')}}" alt="Blog">blog</a></li>
+			     <li class="hli ff2">|</li>	
+			     <li class="{% if request.endpoint and 'client-portal' in request.endpoint %}active{% endif %}"><a href="/client-portal" alt="Client Portal">portal</a></li>
+			     <li class="hli ff2">|</li>	
+			     <li class="{% if request.endpoint and 'contact' in request.endpoint %}active{% endif %}"><a href="{{url_for('contact')}}" alt="Contact us">contact</a></li>   
+		    </ul>
+		</nav>
+		{% endblock %}
+	</div>
+	</header> 
+	{% with messages = get_flashed_messages() %}
+    	{% if messages %}
+		    <ul>
+		    {% for message in messages %}
+		        <li>{{ message }} </li>
+		    {% endfor %}
+		    </ul>
+	    {% endif %}
+    {% endwith %}
+	<article id="content-wrapper" class="row">
+	    <nav id='sidebar' class='twocol fl center'>
+	    	<h1 class='element-invisible'>Sidebar navigation</h1>
+	    	<div id='sidebar-nav' class='m-bottom brown'>	
+		    	{% if user %}
+	  				Currently logged in as {{user}}
+	  			{% endif %}	
+		    	{% block sidebar_nav %}
+		    		<ul id="navigation">
+					    {% for item in navigation %}
+					        <li{% if request.path and request.path == item[0] %} class='active'{% endif %}><a href="{{ item[0] }}">{{ item[1] }}</a></li>
+					    {% endfor %}
+				    </ul>
+				{% endblock %}
+		    	<div id='sidebar-quote'>
+		    		<a title='Contact us' href='{{url_for('contact')}}'>
+		    			<img class='m-top center' src='/static/img/contactquotebutton.png'>
+					</a>
+				</div>
+			</div>
+		</nav>		
+		<div class='ninecol'>    
+			<h1 class='fs2 title'>{{title}}</h1>	  							
+			{% if testimonial %}
+			<div  style="" class="twelvecol">
+				<div class='sevencol'>
+			  		{% block description %}
+			  		{% endblock %}	
+			  	</div>
+			  <aside class='fl fs3 fivecol last quote' >
+				<h1 class='element-invisible'>Testimonial</h1>
+				<div class='triangle-obtuse'>
+					<blockquote class='quote-text '>
+						<a rel='#full-quote' >&#8220;{{testimonial.body|truncate}}</a>&#8230;</a>
+					</blockquote>
+					<cite class='m-top'>{{testimonial.poc}}, {{testimonial.poc_title}}<br style='margin-top:0;line-height:50%'>{{testimonial.poc_company}}</cite>
+				</div>
+			   </aside>
+			   <div id='full-quote' class='brown'>
+					<blockquote class='quote-text'>
+						{{testimonial.body}}
+					</blockquote>
+					<cite>
+						<p>{{testimonial.poc}}, {{testimonial.poc_title}}</p><p style='margin-top:0;line-height:50%'>{{testimonial.poc_company}}</p>
+					</cite>
+				</div>
+				<div class='fl row'>
+				{% endif %}
+				  {% block content %}			  
+				  {% endblock %}
+			{% if testimonial %}	 
+			  	</div>
+			</div>		
+			{% endif %}	
+		</div>
+	</article>
+</div>
+{% include 'footer.html' %}
+{% block javascript %}
+{% endblock %}

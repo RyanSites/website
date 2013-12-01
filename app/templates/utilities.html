@@ -1,0 +1,62 @@
+{% macro date_to_month(num) %}
+	{% set month = {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June', 7:'July', 8:'August', 9:'September', 10:'October', 11:'November', 12:'December'} %}
+	{{month[num] }}
+{% endmacro %}
+
+{% macro weekday_to_name(num) %}
+	{% set day = {0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday', 5:'Saturday', 6:'Sunday'} %}
+	{{day[num]}}
+{% endmacro %}	
+
+{% macro make_blog(post, author) %}
+<div class='blog_post'>
+	<h1 class="">
+		<a href="/blog/posts/{{post.slug}}" title="{{post.title}}">{{post.title}}</a>
+	</h1>
+ 	{% set year = post.timestamp.year %}	 	
+ 	{% set month = post.timestamp.month %}	 
+ 	{% set day = post.timestamp.day %}	
+ 	{% set weekday = post.timestamp.weekday() %}
+ 	<div class=''>
+	 	<ul class='piped_nav '>
+	 		<li>
+	    		<time class="m-right" datetime="{{post.timestamp}}" pubdate="">
+					<a href="/blog/archives/{{year}}/{{month}}" title="Get all the posts from {{date_to_month(month)}} {{year}}">{{weekday_to_name(weekday)}} {{day}}, {{date_to_month(month)}} {{year}}</a>
+	  			</time>
+	  		</li>	
+	  		<li>
+	  			<address class="white">By: <a rel="author" href="/blog/authors/{{author.nickname}}">{{author.nickname|title}}</a></address>
+			</li>
+			<li class='comments_link'>
+				<a href="/blog/posts/{{post.slug}}#comments" alt="Comments">0 Comments</a>	  
+			</li>
+		</ul>
+	</div>
+    <div class=" center m-top">
+      	<a class="cl" href="/blog/posts/{{post.slug}}" title="{{post.title}}">
+      		<img src="{{post.img}}" class="bordered cl blog-image">
+  		</a>
+	</div>	
+	<div class=''>
+  		<p>{{post.body|truncate}}<em class="blue_t"><a href="/blog/posts/{{post.slug}}">Keep Reading</a></em></p>
+	</div>
+</div>  			
+{% endmacro %}
+
+
+
+{% macro blog_right_sidebar(all_posts) %}
+	{% for post in all_posts %}
+		<div class="row">
+      		<div class="large-6 columns ">
+	  			<a title="{{post.title}}" href="/blog/posts/{{post.slug}}" class='th'>	    
+	    			<img width="109" height="67" title="" alt="" class="bordered wp-post-image" src="{{post.img}}">	  
+    			</a>		
+      		</div>
+	      <div class="large-6 columns last">
+				<h1 class=""><a title="{{post.title}}" href="/blog/posts/{{post.slug}}">{{post.title}}</a></h1>
+				<span><a title="{{post.title}}" href="/blog/posts/{{post.slug}}">READ MORE &gt;</a></span>
+	      </div>      
+	    </div>
+    {% endfor %}
+{% endmacro %}

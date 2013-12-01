@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" name="add_client">
+    {{form.hidden_tag()}}
+    <div>
+    	<label for='client_name'>Client Name:</label>
+    	<div>{{form.client_name}}  </div>
+    </div>
+    <div>
+    	<label for='client_url'>Client URL:</label>
+    	<div>{{form.client_url}}  </div>
+    </div>
+    <div>
+    	<label for='slug'>Client Slug:</label>
+    	<div>{{form.slug}}  </div>
+    </div>
+    <div>
+    	<label for='body'>Body:</label>
+    	<div>{{form.body}}  </div>
+    </div>
+    <p><input type="submit" value="Submit"></p>
+</form>
+{% endblock %}
