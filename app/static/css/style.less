@@ -130,6 +130,38 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 #full-quote{display:none;z-index:10000;padding:1em 1%;width:675px;min-height:200px;border:1px solid #666;-moz-box-shadow:0 0 90px 5px #000;-webkit-box-shadow: 0 0 90px #000;}
 #full-quote .close {background-image:url(images/xgraphic.png); position:absolute;right:-15px;top:-15px;cursor:pointer; height:35px;width:35px;}
 .triangle-obtuse {background-color:rgb(239, 232, 232)}
+.triangle-obtuse:after {
+    border-color: transparent #FFFFFF;
+    border-style: solid;
+    border-width: 0 0 30px 20px;
+    bottom: -30px;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 110px;
+    width: 0;
+}
+.triangle-obtuse:before {
+    border-color: transparent #EFE8E8;
+    border-style: solid;
+    border-width: 0 0 30px 50px;
+    bottom: -30px;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 80px;
+    width: 0;
+}
+.triangle-obtuse {
+   /* background: -moz-linear-gradient(#EFE8E8, #EFE8E8) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#EFE8E8), to(#EFE8E8));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EFE8E8', endColorstr='#EFE8E8');*/
+    background-color:#EFE8E8;
+    border-radius: 25px 25px 25px 25px / 50px 50px 50px 50px;
+    margin: 0;
+    padding: .5em 4%;
+    position: relative;
+}
 .quote-div{padding:.5em 4%;width:100%;float:right}
 .quote-ellipsis, .quote-div cite{margin-left:2%}
 .quote .quote-text{line-height:150%;white-space:normal;font-size:.9rem;}
@@ -142,7 +174,7 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 #services-area{.ff3;
 	.large-4{padding:0;}
 	li{list-style-type: none;font-size: .9rem;}
-	h2{font-size:1.2rem}
+	h2{font-size:1.2rem;.ff1;}
 	#services-image {    margin: 4em auto auto;    text-align: center;}
 }
 .front-page div.row {width: 100%;max-width: 642px;min-width: 345px;margin: 0 auto;overflow: hidden;}
@@ -222,6 +254,7 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 .portfolio-circle-vert .circle-underlay{position:absolute;margin-top:-22%;z-index:0}
 .circle{z-index:1;position:absolute;left:0;top:0}
 .circle-text{z-index:2;position:relative;}
+#client_description{line-height: 1.5;}
 
 /*  SLIDESHOW */
 .service-description{.ff3;line-height: 1.5;padding-bottom:@vmar;
@@ -231,9 +264,7 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 
 }
 .service{
-	.panel{float: left}
-	.coda-nav-left, .coda-nav-right{}
-	.coda-slider{min-height:361px}
+	.orbit-container{margin-top:@vmar*2;}
 }
 
 /* CONTACT */
