@@ -11,9 +11,15 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
+def ShouldBeEmpty(form, field):
+	if field.data:
+		return False
+	return True
+
 class LoginForm(Form):
     user_name = TextField('user_name', validators = [Required('Please enter a username')])
     password = PasswordField('password', validators =[Required('Please enter a password')])
+    hidden = TextField('hidden',validators=[ShouldBeEmpty])
     remember_me = BooleanField('remember_me', default = False)
 
     def __init__(self, *args, **kwargs):
@@ -36,6 +42,7 @@ class ContactForm(Form):
 	email = EmailField('email', validators=[Required('Please enter a valid email address.'), Email('Please enter a valid email address.')])
 	preference = RadioField('preference', choices=[('phone', 'Phone'), ('email', 'Email')])
 	body = TextAreaField('body', validators=[Required('Please leave us a message.')])
+	hidden = TextField('hidden',validators=[ShouldBeEmpty])
 
 class ClientForm(Form):
 	client_name = TextField('client_name', validators=[Required()])
