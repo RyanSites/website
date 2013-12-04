@@ -4,12 +4,14 @@
 </p>
 {% endblock %}
 {% block content %}
-<ul class="sixcol m-top">
-	<li class="indent">Consulting Services</li>
-	<li class="indent"><a href="http://brgdonline.com/portfolio/other-services/" title="Other Services">Product Photography</a></li>
-</ul>
-<ul class="sixcol m-top last">
-	<li class="indent">Social Media Setup and Design</li>
-	<li class="indent">Copywriting</li>
-</ul>
+<div id='services_other_services' class='large-12 columns small-center'>
+	<ul class="large-6 columns m-top indent">
+		<li>Consulting Services</li>
+		<li><a href="{{url_for('portfolio_other_services')}}" title="Other Services">Product Photography</a></li>
+	</ul>
+	<ul class="large-6 columns m-top indent">
+		<li>Social Media Setup and Design</li>
+		<li>Copywriting</li>
+	</ul>
+</div>
 {% endblock %}

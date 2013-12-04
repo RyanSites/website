@@ -1,45 +1,20 @@
 {% extends 'base.html' %}
 
-{% macro date_to_month(num) %}
-	{% set month = {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June', 7:'July', 8:'August', 9:'September', 10:'October', 11:'November', 12:'December'} %}
-	{{month[num] }}
-{% endmacro %}
-
-{% macro make_blog(post, author) %}
-	 <h1 class=" twelvecol bold"><a href="/blog/post/{{post.slug}}" title="{{post.title}}">{{post.title}}</a></h1>
-	 	{% set year = post.timestamp.year %}	 	
-	 	{% set month = post.timestamp.month %}	 	
-	    <time class="fs6 fl m-right" datetime="{{post.timestamp}}" pubdate="">
-			<a href="/blog/archive/{{year}}/{{month}}" title="Get all the posts from {{date_to_month(month)}} {{year}}">{{date_to_month(month)}} {{year}}</a>
-      	</time>
-      	<span class="fl m-right">|</span>
-      	<address class="white fl m-right fs6">By: <a rel="author" href="/blog/authors/{{author.nickname}}">{{author.nickname}}</a>
-      	</address>
-	    <span class="fl m-right">|</span>
-        <span class="fs6">
-	      	<a href="/blog/post/{{post.slug}}#comments" alt="Comments">0 Comments</a>	  
-		</span>
-	    <div class="twelvecol center">
-	      	<a class="cl" href="/blog/post/{{post.slug}}" title="{{post.title}}">
-	      		<img src="{{post.img}}" class="bordered cl blog-image">
-      		</a>
-		</div>	
-	  <p>{{post.body|truncate}}<em class="blue_t"><a href="/blog/post/{{post.slug}}">Keep Reading</a></em></p>
-{% endmacro %}
+{% import 'utilities.html' as utilities %}
 
 {% block sidebar_nav %}	
-	<nav class="m-bottom">
-		<h2 style="margin-bottom:0px" class="">Archives</h2>
+	<nav class="">
+		<h2  class="">Archives</h2>
 		<ul>	
 			{% for date, count in date_navigation %}
 				{% set month = date[1] %}
 				{% set year = date[0] %}
-				<li><a href="/blog/archive/{{year}}/{{month}}" title="{{date_to_month(month)}} {{year}}">{{date_to_month(month)}} {{year}} ({{count}})</a></li>				
+				<li><a href="/blog/archives/{{year}}/{{month}}" title="{{utilities.date_to_month(month)}} {{year}}">{{utilities.date_to_month(month)}} {{year}} ({{count}})</a></li>				
 			{% endfor %}
 		</ul>
 	</nav>
-	<nav class="m-bottom">
-		<h2 style="margin-bottom:0px" class="">Categories</h2>
+	<nav class="">
+		<h2 style="" class="">Categories</h2>
 		<ul>	
 			{% for category, count in category_navigation %}
 				{% set title = category[0] %}
@@ -48,8 +23,8 @@
 			{% endfor %}
 		</ul>
 	</nav>
-	<nav class="m-bottom">
-		<h2 style="margin-bottom:0px" class="">Tags</h2>
+	<nav class="">
+		<h2 style="" class="">Tags</h2>
 		<ul>	
 			{% for tag, count in tag_navigation %}
 				{% set title = tag[0] %}
@@ -60,34 +35,39 @@
 	</nav>
 {% endblock %}
 
-{% block content %}
-<section id="blog-main-post" class="row">		
+{% block content %}	
+<div class='large-9 columns'>
 	{% if posts|length > 0 %}
-	<div class="twelvecol">	  
-	     {{ make_blog(posts[0], authors[0]) }}
+	<div class="">	  
+	     {{ utilities.make_blog(posts[0], authors[0]) }}
 	</div>
 	{% else %}
 		No Posts found
 	{% endif %}
-	{% if posts|length > 1 %}
-		<div class='sixcol'>
-			 {{ make_blog(posts[1], authors[1]) }}
+	{% if posts|length > 1 %}		
+		<div class='small-12 large-6 columns'>
+			<div class='row'>
+			 	{{ utilities.make_blog(posts[1], authors[1]) }}
+			 </div>
 		</div>
 	{% endif %}
 	{% if posts|length > 2 %}
-		<div class='sixcol'>
-			 {{ make_blog(posts[2], authors[2]) }}
+		<div class='small-12 large-6 columns'>
+			 {{ utilities.make_blog(posts[2], authors[2]) }}
 		</div>
 	{% endif %}
 	{% if posts|length > 3 %}
-		<div class='sixcol'>
-			 {{ make_blog(posts[3], authors[3]) }}
+		<div class='small-12 large-6 columns'>
+			 {{ utilities.make_blog(posts[3], authors[3]) }}
 		</div>
 	{% endif %}
 	{% if posts|length > 4 %}
-		<div class='sixcol'>
-			 {{ make_blog(posts[4], authors[4]) }}
+		<div class='small-12 large-6 columns'>
+			 {{ utilities.make_blog(posts[4], authors[4]) }}
 		</div>
 	{% endif %}
-</section>
+</div>
+<nav id='blog_right_sidebar' class='large-3 columns '>
+	{{ utilities.blog_right_sidebar(all_posts)}}
+</nav>
 {% endblock %}

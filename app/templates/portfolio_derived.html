@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}		
+	
 	{% for service in services %}
 		{{ make_slideshow(service[1], service[0], service[2]) }}
 	{% endfor %}

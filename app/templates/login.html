@@ -2,6 +2,7 @@
 {% block content %}
 <form action="" method="post" name="login">
     {{form.hidden_tag()}}
+    <div class='element-invisible'>{{form.hidden}}</div>
     <p>Username: {{form.user_name}}  </p>        
     <p>Password: {{form.password}}</p>
     <p>{{form.remember_me}} Remember Me</p>

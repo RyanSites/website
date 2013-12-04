@@ -1,11 +1,13 @@
 {% extends 'portfolio_derived.html' %}
 
 {% block description %}
-{{client.body}}
+<div id='client_description'>
+	{{client.body}}
+</div>
 {% endblock %}
 
 {% block content %}
-{% for service, images in services %}
-	{{make_slideshow(service, client, images)}}
-{% endfor %}
+	{% for service, images in services %}
+		{{make_slideshow(service, client, images)}}
+	{% endfor %}
 {% endblock %}

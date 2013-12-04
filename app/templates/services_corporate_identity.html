@@ -3,16 +3,18 @@
 <p>A corporate identity, or “company persona” is one of the most important aspects of marketing a business. By branding or using trademarks, a company’s corporate identity can be visually manifested for lasting public recognition. At BR Graphic Design, we take the time to really get to know your business, competition, and business objectives. We use that information to build a lasting identity, which makes your company more distinguishable and appealing to your target audience.</p>
 {% endblock %}
 {% block content %}
-<ul class=" sixcol m-top">
-	<li class="indent"><a title="Corporate Identity Portfolio" href="http://brgdonline.com/portfolio/corporate-identity/">Company Logo</a></li>
-	<li class="indent">Corporate Font and Colors</li>
-	<li class="indent">Custom Graphics</li>
-	<li class="indent">Presentation Design</li>
-</ul>
-<ul class=" sixcol last m-top">
-	<li class="indent"><a title="Print Design Portfolio" href="http://brgdonline.com/portfolio/print-design/">Marketing Collateral</a></li>
-	<li class="indent"><a title="Print Design Portfolio" href="http://brgdonline.com/portfolio/print-design/">Business Cards</a></li>
-	<li class="indent"><a title="Print Design Portfolio" href="http://brgdonline.com/portfolio/print-design/">Letterhead</a></li>
-	<li class="indent">Tradeshow Booth Design</li>
-</ul>
+<div id='services_corporate_identity' class='small-center large-12 columns'>
+	<ul class="indent large-6 columns m-top">
+		<li><a title="Corporate Identity Portfolio" href="{{url_for('portfolio_corporate_identity')}}">Company Logo</a></li>
+		<li>Corporate Font and Colors</li>
+		<li>Custom Graphics</li>
+		<li>Presentation Design</li>
+	</ul>
+	<ul class="indent large-6 columns m-top">
+		<li><a title="Print Design Portfolio" href="{{url_for('portfolio_print_design')}}">Marketing Collateral</a></li>
+		<li><a title="Print Design Portfolio" href="{{url_for('portfolio_print_design')}}">Business Cards</a></li>
+		<li><a title="Print Design Portfolio" href="{{url_for('portfolio_print_design')}}">Letterhead</a></li>
+		<li>Tradeshow Booth Design</li>
+	</ul>
+</div>
 {% endblock %}

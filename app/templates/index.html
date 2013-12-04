@@ -2,27 +2,22 @@
 <body id="page-wrapper" class="front-page">
     <header class="container m-bottom">
 	  <h1 class="row center">
-	    <a href="" title="Home">
+	    <a href="{{url_for('index')}}" title="Home">
 		<img alt="BR Graphic Design" src="/static/img/logo.jpg" class="">  
 		</a>
 	  </h1>	
 	<div id="main-nav" class="m-top row ">	  
-	  <nav class="twelvecol">
-  <h1 class='element-invisible'>Main Navigation</h1>
-   <ul class="fs2" >
-     <li class=""><a href="/about" alt="About us">about</a></li>		      
-     <li class="hli ff2">|</li>	
-     <li class=""><a href="/services" alt="Services we offer">services</a></li>
-     <li class="hli ff2">|</li>	
-     <li class=""><a href="/portfolio" alt="Our portfolio">portfolio</a></li>
-     <li class="hli ff2">|</li>	
-     <li class=""><a href="/blog" alt="Blog">blog</a></li>
-     <li class="hli ff2">|</li>	
-     <li class=""><a href="/client-portal" alt="Client Portal">portal</a></li>
-     <li class="hli ff2">|</li>	
-     <li class=""><a href="/contact" alt="Contact us">contact</a></li>   
-    </ul>
- </nav>
+	  <nav class="large-12 columns">
+		  <h1 class='element-invisible'>Main Navigation</h1>
+		   <ul class="piped_nav small-block-grid-1 large-block-grid-6">
+		     <li class=""><a href="{{url_for('about')}}" alt="About us">about</a></li>		           
+		     <li class=""><a href="{{url_for('services')}}" alt="Services we offer">services</a></li>     
+		     <li class=""><a href="{{url_for('portfolio')}}" alt="Our portfolio">portfolio</a></li>     
+		     <li class=""><a href="{{url_for('blog')}}" alt="Blog">blog</a></li>     
+		     <li class=""><a href="{{url_for('client_portal')}}" alt="Client Portal">portal</a></li>     
+		     <li class=""><a href="{{url_for('contact')}}" alt="Contact us">contact</a></li>   
+		    </ul>
+		 </nav>
        	</div>
     </header>
     {% with messages = get_flashed_messages() %}
@@ -34,57 +29,77 @@
 		    </ul>
 	    {% endif %}
     {% endwith %}
-    <div id="front-page-montage" class="row m-top">		
-	<a title="Gordon Food Service" href="/client/gfs-marketplace/"><img class="col gapr" src="/static/images/1.jpg" alt="Gordon Food Service"></a>
-        <a title="Full Circle Bodyworks" href="/client/full-circle-bodyworks/"><img class="col gapr" src="/static/img/2.jpg" alt="Full Circle Bodyworks"></a>
-        <span class="col last" style="clear:right">
-                <a title="A Massage on the River" href="/client/a-massage-on-the-river/"><img class="col last" style="clear:right;" src="/static/img/3.gif" alt="A Massage On The River"></a>
-                <a title="Whipped" href="/client/whipped/"><img class="col last" style="margin-top:1em;clear:left" src="/static/img/4.jpg" alt="Whipped"></a>
-        </span>
-        <a title="Advocates 4 Animals" href="/client/advocates-4-animals-inc/"><img class="m-top col gapr"  style="clear:left;overflow:hidden;max-height:197px" width=345px height=197px src="/static/img/5.gif" alt="Advocates 4 Animals"></a>
-        <a title="Dayton Defense Educational Foundation" href="/client/dayton-defense-educational-foundation/"><img class="m-top col last " style="margin-left:1.3%" src="/static/img/6.jpg" alt="Dayton Defense Educational Foundation"></a>
-        <a title="Full Circle Bodyworks" href="/client/full-circle-bodyworks/"><img class="m-top " style="float:right;margin-right:2px" src="/static/img/9.gif" alt="Full Circle Bodyworks"></a>        
-        <a title="Jordan Ross Music" href="/client/jordan-ross-music/"><img class="m-top col gapr" style="clear:left" src="/static/img/7.jpg" alt="Jordan Ross Music"></a>
-        <a title="Full Circle Bodyworks" href="/client/full-circle-bodyworks/"><img class="m-top col gapr" src="/static/img/8.jpg" alt="Full Circle Bodyworks"></a>               
+    <div id="front-page-montage" class="row m-top">
+		<div class='row'>
+			<div class='large-3 columns'>
+				<a title="Gordon Food Service" href="/clients/gfs-marketplace"><img class="col gapr" src="/static/img/1.jpg" alt="Gordon Food Service"></a>
+			</div>
+			<div class='large-5 columns'>
+        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="col gapr" src="/static/img/2.jpg" alt="Full Circle Bodyworks"></a>
+    		</div>
+    		<div class="large-4 columns">
+                <a title="A Massage on the River" href="/clients/a-massage-on-the-river">
+                	<img src="/static/img/3.gif" alt="A Massage On The River">
+            	</a>
+                <a title="Whipped" href="/clients/whipped"><img src="/static/img/4.jpg" alt="Whipped"></a>
+        	</div>
+    	</div>
+    	<div class='row'>
+    		<div class='large-7 columns'>
+	        	<a title="Advocates 4 Animals" href="/clients/advocates-4-animals-inc"><img class="m-top col gapr"  style="clear:left;overflow:hidden;max-height:197px" width=345px height=197px src="/static/img/5.gif" alt="Advocates 4 Animals"></a>
+	        	<div class='large-6 columns'>
+	        		<a title="Jordan Ross Music" href="/clients/jordan-ross-music"><img class="m-top col gapr" style="clear:left" src="/static/img/7.jpg" alt="Jordan Ross Music"></a>
+        		</div>
+        		<div class='large-6 columns'>
+	        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="m-top col gapr" src="/static/img/8.jpg" alt="Full Circle Bodyworks"></a>               
+	        	</div>
+        	</div>
+        	<div class='large-5 columns'>
+	        	<a title="Dayton Defense Educational Foundation" href="/clients/dayton-defense-educational-foundation">
+	        		<img class="m-top" src="/static/img/6.jpg" alt="Dayton Defense Educational Foundation">
+        		</a>
+	        	<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="m-top " style="" src="/static/img/9.gif" alt="Full Circle Bodyworks"></a>        
+        	</div>	        
+        </div>
       </div>
-      <section id="services-area" class="brown m-top  container">
-	<h1 class='element-invisible'>Services we provide</h1>
-	<div class="row">
-	  <div class="fourcol fl m-bottom">
-		  <ul>
-			  <li><h2 class="m-top fs4 ff1"><a href='/services/website-design' title='Website Design'>Website Design</a></h2></li>
-			  <li>Content Management Systems</li>
-			  <li>E-Commerce / Shopping Carts</li>
-			  <li>Search Engine Optimization</li>
-			  <li>Social Media Integration</li>
-			  <li>Consulting Services</li>
-		  </ul>
-		  <ul>
-			  <li><h2 class="m-top fs4 ff1"><a href='/services/corporate-identity' title='Corporate Identity'>Corporate Identity</a></h2></li>
-			  <li>Logo Development</li>
-			  <li>Color Palette Development</li>
-			  <li>Corporate Design Consistency</li>
-		  </ul>
-	  </div>
-	  <div id="services-image" class="fourcol fl">
-		  <a href='/services/' title='Our Services'><img  src="/static/img/ourservices.png" alt="Our Services"></a>
-	  </div>
-	  <div class="fourcol fl last m-bottom" style="text-align:right">
-		  <ul>
-			  <li><h2 class="m-top fs4 ff1"><a href='/services/print-design' title='Print Design'>Print Design</a></h2></li>
-			  <li>Business Cards and Letterhead</li>
-			  <li>Tradeshow Materials</li>
-			  <li>Posters and Signs</li>
-			  <li>Presentation Materials</li>
-			  <li>Product Data Sheets</li>
-			  <li>Advertisement Design</li>
-		  </ul>
-		  <ul>
-			  <li><h2  class="m-top fs4 ff1"><a href='/services/other-services' title='Other Services'>Other Services</a></h2></li>
-			  <li>Copyrighting</li>
-			  <li>Product Photography</li>
-		  </ul>
-	  </div>
-	</div>	
-    </section>
+      <div id="services-area" class="periwinkle m-top container">
+		<!-- <h1 class='element-invisible'>Services we provide</h1> -->
+		<div class="row">
+		  <div class="large-4 columns m-bottom">
+			  <ul>
+				  <li><h2 class="m-top"><a href='/services/website-design' title='Website Design'>Website Design</a></h2></li>
+				  <li>Content Management Systems</li>
+				  <li>E-Commerce / Shopping Carts</li>
+				  <li>Search Engine Optimization</li>
+				  <li>Social Media Integration</li>
+				  <li>Consulting Services</li>
+			  </ul>
+			  <ul>
+				  <li><h2 class="m-top"><a href='/services/corporate-identity' title='Corporate Identity'>Corporate Identity</a></h2></li>
+				  <li>Logo Development</li>
+				  <li>Color Palette Development</li>
+				  <li>Corporate Design Consistency</li>
+			  </ul>
+		  </div>
+		  <div id="services-image" class="large-4 columns center">
+			  <a href="{{url_for('services')}}" title='Our Services'><img  src="/static/img/ourservices.png" alt="Our Services"></a>
+		  </div>
+		  <div class="large-4 columns last m-bottom" style="text-align:right">
+			  <ul>
+				  <li><h2 class="m-top  ff1"><a href='/services/print-design' title='Print Design'>Print Design</a></h2></li>
+				  <li>Business Cards and Letterhead</li>
+				  <li>Tradeshow Materials</li>
+				  <li>Posters and Signs</li>
+				  <li>Presentation Materials</li>
+				  <li>Product Data Sheets</li>
+				  <li>Advertisement Design</li>
+			  </ul>
+			  <ul>
+				  <li><h2  class="m-top  ff1"><a href='/services/other-services' title='Other Services'>Other Services</a></h2></li>
+				  <li>Copyrighting</li>
+				  <li>Product Photography</li>
+			  </ul>
+		  </div>
+		</div>	
+    </div>
 {% include "footer.html" %}

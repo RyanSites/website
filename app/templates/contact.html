@@ -5,35 +5,46 @@
 {% endfor %}
 <form action="" method="post" name="contact">
     {{form.hidden_tag()}}
-    <div>
-      <label for='name'>Name*:</label>
-      <div>{{form.name}} </div>
+    <div class='element-invisible'>{{form.hidden}}</div>
+    <div class='row'>
+      <div class='large-2 columns'>      <label for='name' class=''>Name*:</label>      </div>
+      <div class='large-4 columns'>{{form.name}} </div>
     </div>
-    <div>
-      <label for='company'>Company:</label>
-      <div>{{form.company}} </div>
+    <div class='row'>
+      <div class='large-2 columns'>      <label for='company' class=''>Company:</label>      </div>
+      <div class='large-4 columns'>{{form.company}} </div>
     </div>
-    <div>
-      <label for='phone_number'>Phone Number:</label>
-      <div>{{form.phone_number}} </div>
+    <div class='row'>
+      <div class='large-2 columns'>      <label for='phone_number' class=''>Phone Number:</label>      </div>
+      <div class='large-4 columns'>{{form.phone_number}} </div>
     </div>
-    <div>
-      <label for='email'>Email*:</label>
-      <div>{{form.email}} </div>
+   <div class='row'>
+      <div class='large-2 columns'>      <label for='email' class=''>Email*:</label>      </div>
+      <div class='large-4 columns'>{{form.email}} </div>
     </div>
-    <div>
-      <label for='preference'>How do you prefer to be contacted?</label>
-      <div>
+    <div class='row'>
+      <div class='large-2 columns'>
+        <label for='preference'>How do you prefer to be contacted?</label>
+      </div>  
+      <div class='large-4 columns'>
      {% for subfield in form.preference %}      
           {{ subfield }}
           {{ subfield.label }}      
   	 {% endfor %}
       </div>
     </div>
-    <div>
-      <label for='body'>Message*:</label>
-      <div>{{form.body}}</div>
+    <div class='row'>
+      <div class='large-2 columns'>
+        <label for='body'>Message*:</label>
       </div>
-    <p><input type="submit" value="Submit"></p>
+      <div class='large-4 columns'>
+        {{form.body}}
+      </div>
+    </div>
+    <div class='row '>
+      <div class='large-push-5'>
+        <input type="submit" value="Send!">
+      </div>
+    </div>
 </form>
 {% endblock %}

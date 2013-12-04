@@ -1,77 +1,114 @@
-<footer class="blue white_t container front-page">				  
-  <nav class="row m-top" style='margin-top:1em'>
+<footer class="blue white_t ">				  
+  <nav class="row m-top" style=''>
     <h1 class='element-invisible'>Footer Navigation</h1>
-    <div class="twocol">
+    <div id='footer_address' class="large-2 small-12 columns">
 	    <div itemscope itemtype="http://schema.org/LocalBusiness" class="center m-bottom">
-	    <p class="bold fs5" itemprop="name"><a href=''><img class="toggle_color" src="/static/img/footerlogo.png" alt="Logo" ></a></p>
-	    <span class="invis" itemprop="description"> Custom websites and graphic design.</span>
-	    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-	      <p itemprop="streetAddress">PO Box 33525</p>
-	      <span itemprop="addressLocality">Dayton</span>,
-	      <span itemprop="addressRegion">OH</span>
-	      <span>45433</span>
-	    </div>
-	    <span itemprop="telephone">937.308.3316</span>
-	    <p><a href='mailto&#58;i&#110;%66&#111;%40&#98;%72%67don&#37;6Cine&#46;%63&#37;6Fm'>Email Us</a></p>
+  	    <div class="bold" itemprop="name"><a href=''><img class="toggle_color" src="/static/img/footerlogo.png" alt="Logo" ></a></div>
+  	    <span class="element-invisible" itemprop="description"> Custom websites and graphic design.</span>
+  	    <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+  	      <p itemprop="streetAddress">PO Box 33525</p>
+  	      <p><span itemprop="addressLocality">Dayton</span>,
+  	      <span itemprop="addressRegion">OH</span>
+  	      <span>45433</span></p>
+  	    </div>
+  	    <p itemprop="telephone">937.308.3316</p>
+  	    <p><a href='mailto&#58;i&#110;%66&#111;%40&#98;%72%67don&#37;6Cine&#46;%63&#37;6Fm'>Email Us</a></p>
 	  </div>	  
-      </div>
-    <div class='twocol'>
-      <h2 class="fs4"><a href='/about/' title='About page'>About</a></h2>		      
-      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/about">About Us</a></li><li class="indent not-active"><a href="/about/programs">Design Tools</a></li><li class="indent not-active"><a href="/about/our-process">Our Process</a></li></ul>			    
+  </div>
+    <div class='large-2 small-12 columns small-center'>
+      <h2 class=""><a href="{{url_for('about')}}" title='About page'>About</a></h2>		      
+      <ul class="" id="">
+        <li class="  "><a href="{{url_for('about')}}">About Us</a></li>
+        <li class=""><a href="{{url_for('about_programs')}}">Design Tools</a></li>
+        <li class=""><a href="{{url_for('about_our_process')}}">Our Process</a></li>
+      </ul>			    
     </div>
-    <div class='twocol'>
-      <h2 class="fs4"><a href='/services/' title='Services page'>Services</a></h2>
-      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/services/website-design">Website Design</a></li><li class="indent not-active"><a href="/services/corporate-identity">Corporate Identity</a></li><li class="indent not-active"><a href="/services/print-design/">Print Design</a></li><li class="indent not-active"><a href="/services/other-services">Other Services</a></li></ul>    </div>  
-  <div class="twocol">
-    <h2 class="fs4"><a href='/portfolio/' title='Portfolio page'>Portfolio</a></h2>
-      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/portfolio/website-design/">Website Design</a></li><li class="indent not-active"><a href="/portfolio/corporate-identity/">Corporate Identity</a></li><li class="indent not-active"><a href="/portfolio/print-design/">Print Design</a></li><li class="indent not-active"><a href="/portfolio/other-services/">Other Services</a></li></ul>    </div>  
- <!-- <div class="twocol">
-    <h2 class="m-top fs4">Blog</h2>     
-    </div>  -->
-  <div class="twocol">
-    <h2 class="fs4"><a href='/client-portal/' title='Client Portal'>Client Portal</a></h2>
-      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/client-portal/">Log In</a></li><li class="indent not-active"><a href="/client-portal/">Register</a></li></ul>    </div> 
-   <div class="twocol last">
-    <h2 class="fs4"><a href='/contact/' title='Contact page'>Contact</a></h2>
-      <ul class="menu" id="menu-"><li class="indent  menu-first not-active"><a href="/contact/">Contact Us</a></li><li class="indent not-active"><a href="/contact/">Request a quote</a></li></ul>    </div>     							      	
+    <div class='large-2 small-12 columns small-center'>
+      <h2 class=""><a href='{{url_for('services')}}' title='Services page'>Services</a></h2>
+      <ul class="" id="">
+        <li class="  "><a href="{{url_for('services_website')}}">Website Design</a></li>
+        <li class=""><a href="{{url_for('services_corporate_identity')}}">Corporate Identity</a></li>
+        <li class=""><a href="{{url_for('services_print_design')}}">Print Design</a></li>
+        <li class=""><a href="{{url_for('services_other_services')}}">Other Services</a></li>
+      </ul>
+    </div>  
+  <div class="large-2 small-12 columns  small-center">
+    <h2 class=""><a href='{{url_for('portfolio')}}' title='Portfolio page'>Portfolio</a></h2>
+    <ul class="" id="">
+      <li class=""><a href="{{url_for('portfolio_website_design')}}">Website Design</a></li>
+      <li class=""><a href="{{url_for('portfolio_corporate_identity')}}">Corporate Identity</a></li>
+      <li class=""><a href="{{url_for('portfolio_print_design')}}">Print Design</a></li>
+      <li class=""><a href="{{url_for('portfolio_other_services')}}">Other Services</a></li>
+    </ul>
+  </div>  
+  <div class="large-2 small-12 columns  small-center">
+    <h2 class=""><a href='{{url_for('client_portal')}}' title='Client Portal'>Client Portal</a></h2>
+    <ul class="" id="">
+      <li class=""><a href="{{url_for('client_portal')}}">Log In</a></li>
+      <li class=""><a href="{{url_for('client_portal')}}">Register</a></li>
+    </ul>
+  </div> 
+   <div class="large-2 small-12 columns  small-center">
+    <h2 class=""><a href="{{url_for('contact')}}" title='Contact page'>Contact</a></h2>
+    <ul class="" id="">
+      <li class="  "><a href="{{url_for('contact')}}">Contact Us</a></li>
+      <li class=""><a href="{{url_for('contact')}}">Request a quote</a></li>
+    </ul>
+  </div>     							      	
   </nav>
-<p class='ff1 center fs2 row'>Proudly serving the Dayton Ohio region</p>
-  <nav class="center m-top row">
+  <p class='ff1 center row'>Proudly serving the Dayton Ohio region</p>
+  <nav class="center m-top row small-center">
     <h1 class='element-invisible'>Social Media Links</h1>
-	<ul class="m-top horz-list twelvecol">
-		<li class="spaced"><a href="http://www.facebook.com/brgraphicdesign" title="Facebook"><img class="toggle_color" src="/static/img/facebookcolor.png" alt="Facebook" ></a></li>
-		<li class="spaced"><a href="http://www.twitter.com/brgraphicdesign" title="Twitter"><img class="toggle_color" src="/static/img/twittercolor.png" alt="Twitter" ></a></li>
-		<li class="spaced"><a href="http://www.pinterest.com/brgraphicdesign" title="Pinterest"><img class="toggle_color" src="/static/img/pinterestcolor.png" alt="Pinterest" ></a></li>
-		<li class="spaced"><a href="http://www.linkedin.com/company/1218779" title="LinkedIn"><img class="toggle_color" src="/static/img/linkedin.png" alt="LinkedIn" ></a></li>
-		<li class="spaced"><a href="/contact" title="Contact Us"><img class="toggle_color" src="/static/img/emailcolor.png" alt="Contact Us" ></a></li>
-	</ul>				
-      </nav>
-  <p class="m-top center fs3"><i>Copyright &copy; 2012-2013 BR Graphic Design LLC</i></p>
+  	<ul class="m-top large-6 columns large-centered small-block-grid-5 ">
+  		<li class=""><a href="http://www.facebook.com/brgraphicdesign" title="Facebook"><img class="toggle_color" src="/static/img/facebookcolor.png" alt="Facebook" ></a></li>
+  		<li class=""><a href="http://www.twitter.com/brgraphicdesign" title="Twitter"><img class="toggle_color" src="/static/img/twittercolor.png" alt="Twitter" ></a></li>
+  		<li class=""><a href="http://www.pinterest.com/brgraphicdesign" title="Pinterest"><img class="toggle_color" src="/static/img/pinterestcolor.png" alt="Pinterest" ></a></li>
+  		<li class=""><a href="http://www.linkedin.com/company/1218779" title="LinkedIn"><img class="toggle_color" src="/static/img/linkedin.png" alt="LinkedIn" ></a></li>
+  		<li class=""><a href="/contact" title="Contact Us"><img class="toggle_color" src="/static/img/emailcolor.png" alt="Contact Us" ></a></li>
+  	</ul>				
+  </nav>
+  <div id='copyright' class="m-top row center">
+    <small>
+      Copyright &copy; 2012-2013 BR Graphic Design LLC
+    </small>
+  </div>
 </footer>
-<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-<script>  
-    $("a[rel]").overlay({mask: '#000'});  
-</script>
+<script src="/static/js/less-1.5.0.min.js" type="text/javascript"></script> 
+<script type='text/javascript' src='/static/js/jquery.js'></script>
+<script type='text/javascript' src='/static/js/modernizr.js?ver=3.4.2'></script>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js?ver=3.4.2'></script>
+<script type='text/javascript' src='/static/js/foundation.js'></script>    
+<script type='text/javascript' src='/static/js/foundation.orbit.js'></script>    
 <script type="text/javascript" src="/static/js/custom.js"></script>
-<script type="text/javascript">
-  $.noConflict();
-  $('.coda-slider').codaSlider({
-  autoSlideControls:true, 
-  dynamicTabsPosition:"bottom",
-  dynamicArrows:false,
-  dynamicTabsAlign:"left",
-  dynamicTabs:false,
-  autoSlide:true,
-  autoSlideInterval:4000
-  });
+<script>
+$(document).foundation('orbit', {
+  animation_speed: 1500,
+  slide_number:false,
+  navigation_arrows:false,
+  timer_speed:2500
+});
 </script>
 <script>
 $.ajaxSetup({ cache: false });
 // Display Latest Tweet
-    jQuery.get('/static/tweets.txt', function(data) {
+    jQuery.get('/static/js/tweets.txt', function(data) {
         var myvar = data;
-        $('#twitter-feed').append('<div id="twitter_text" class="brown">'+"<a href='http://twitter.com/brgraphicdesign' title='twitter'><img src='/static/img/twittergraphic.png' class='fl' id='twitter_img'></a>"+'<h1 class="fs1 ff1">Latest Tweet</h1><p class="fs3">'+data+'<br class="cf"></div></div>');
+        $('#twitter-feed').append("<div id='twitter_img' class='periwinkle'><a href='http://twitter.com/brgraphicdesign' title='twitter'><img src='/static/img/twittergraphic.png' class='show-for-medium-up' ></a></div>\
+            <div id='twitter_text' class=''><h1 class='ff1'><a href='http://twitter.com/brgraphicdesign' title='twitter'>Latest Tweet</a></h1>"+data+"</div>");
+        
     });
+
+var maxWidth = 300, // Your div max-width
+    totalWidth = 0;
+$('.piped_nav li').each(function(){
+    var currentWidth = $(this).outerWidth(),
+        nextWidth = $(this).next().outerWidth();
+    totalWidth += currentWidth;
+    if ( (totalWidth + nextWidth) > maxWidth ) { 
+        <!-- $(this).css('border', 'none'); -->
+        totalWidth = 0;
+    }
+});    
 </script>
 
 <!--<script type="text/javascript" defer>

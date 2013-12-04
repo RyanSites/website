@@ -4,14 +4,16 @@
 </p>
 {% endblock %}
 {% block content %}
-<ul class="sixcol m-top">
-	<li class="indent"><a href="http://brgdonline.com/portfolio/print-design/" title="Print Design Portfolio">Sales Brochures</a></li>
-	<li class="indent"><a href="http://brgdonline.com/portfolio/print-design/" title="Print Design Portfolio">Presentation Aids</a></li>
-	<li class="indent">Tradeshow Displays and Materials</li>
-</ul>
-<ul class="sixcol m-top last">
-	<li class="indent">Product Data Sheets</li>
-	<li class="indent">Sales Templates (Proposals, RFPs)</li>
-	<li class="indent"><a href="http://brgdonline.com/portfolio/print-design/" title="Print Design Portfolio">Sell Sheets</a></li>
-</ul>
+<div id='services_print_design' class='large-12 columns small-center'>
+	<ul class="large-6 columns m-top indent">
+		<li><a href="{{url_for('portfolio_print_design')}}" title="Print Design Portfolio">Sales Brochures</a></li>
+		<li><a href="{{url_for('portfolio_print_design')}}" title="Print Design Portfolio">Presentation Aids</a></li>
+		<li>Tradeshow Displays and Materials</li>
+	</ul>
+	<ul class="large-6 columns m-top indent">
+		<li>Product Data Sheets</li>
+		<li>Sales Templates (Proposals, RFPs)</li>
+		<li><a href="{{url_for('portfolio_print_design')}}" title="Print Design Portfolio">Sell Sheets</a></li>
+	</ul>
+</div>
 {% endblock %}
