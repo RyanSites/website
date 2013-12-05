@@ -1,7 +1,7 @@
 from flask.ext.wtf import Form
 from wtforms.fields.html5 import TelField, EmailField
 from wtforms import TextField, BooleanField, PasswordField, TextAreaField, RadioField, FileField, SelectField, SelectMultipleField
-from wtforms.validators import Required, FileRequired, FileAllowed, Email
+from wtforms.validators import Required, Email
 from werkzeug import secure_filename
 import models
 from app import app
