@@ -12,7 +12,9 @@ def get_testimonial(ids=None):
     """
         Can optionally take a set of ids to choose from. Otherwise randomly selects one from all testimonials.
     """
-    testimonials = {t.id: t for t in Testimonial.query.all() }    
+    testimonials = {}
+    for t in Testimonial.query.all():
+    	testimonials[t.id] = t
     if ids:
     	c = choice(testimonials.keys())
         return testimonials[c]

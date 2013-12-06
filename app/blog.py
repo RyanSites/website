@@ -3,23 +3,25 @@ from app import app, db
 from utilities import  navigation, flash_errors, allowed_file, login_required
 from models import User, Post, Tag, Category
 from datetime import date
-from collections import Counter
 from forms import PostForm
 from werkzeug import secure_filename
 import os
 
 num_to_month = {1:'January', 2:'February', 3:'March', 4:'April', 5:'May', 6:'June', 7:'July', 8:'August', 9:'September', 10:'October', 11:'November', 12:'December'}
-month_to_num = {v:k for k, v in num_to_month.items()}
+month_to_num = dict(zip(num_to_month.values(), num_to_month.keys()))
+
+def get_all_posts(qty=10):
+	return Post.query.limit(qty).all() 
 
 def get_blog_dates(qty=10):
-	months = Counter()
+	months = {}
 	for post in Post.query.all():		
 		my_date = post.timestamp
 		months[(my_date.year, my_date.month)] += 1	
 	return months.most_common(qty)
 
 def get_blog_tags(qty=10):
-	tags = Counter()
+	tags = {}
 	for post in Post.query.all():
 		for tag in post.tags:
 			tags[(tag.title, tag.slug)] += 1
@@ -35,7 +37,7 @@ def get_blog_categories(qty=10):
 def get_authors(posts):
 	authors = []
 	for post in posts:
-		a = User.query.filter_by(id=post.user_id).first()		
+		a = User.query.filter_by(id=post.user_id).first_or_404()		
 		authors.append(a)
 	return authors
 
@@ -46,6 +48,24 @@ def get_posts_by_timestamp( year, month=None):
 				yield p
 			elif month != u'None' and int(month) == p.timestamp.month: 
 				yield p
+
+def get_next_previous_post(post):
+	next, previous = None, None
+	for p in Post.query.all():
+		if p != post:
+			if post.timestamp > p.timestamp: # if the current post is from a later date
+				if next:
+					if  (post.timestamp - p.timestamp) < (post.timestamp - next.timestamp):
+						next = p
+				else:
+					next = p
+			else:
+				if previous:
+					if  (p.timestamp - post.timestamp) < (previous.timestamp - post.timestamp):
+						previous = p
+				else:
+					previous = p
+	return next, previous
 
 @login_required
 @app.route('/add/post', methods=['GET', 'POST'])
@@ -78,31 +98,37 @@ def add_post():
     return render_template('add_post.html', form=form, title='Add Post')	
 
 @app.route('/blog')
+def blog():
+	posts = Post.query.paginate(1, app.config['POSTS_PER_PAGE'], False).items		
+	return render_template('blog.html', title='Blog Postings', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
+
 @app.route('/blog/page')
 @app.route('/blog/page/<int:page>')
-def blog(page=1):
+def blog_page(page=1):
 	posts = Post.query.paginate(page, app.config['POSTS_PER_PAGE'], False).items		
 	title = 'Blog'
 	if page != 1:
 		title = title + " Page "+str(page)
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts))
+	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
 
-@app.route('/blog/post/<post>')
+@app.route('/blog/posts/<post>')
 def blog_post(post):
-	post = Post.query.filter_by(slug = post).first()	
-	title = post.title if post else ''
-	return render_template('post.html', post=post, title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories())
+	post = Post.query.filter_by(slug = post).first_or_404()	
+	title = 'Blog Posting'
+	next, previous = get_next_previous_post(post)
+	return render_template('post.html', post=post, title=title, \
+		date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), \
+		author=get_authors([post])[0], all_posts=get_all_posts(), next=next, previous=previous)
 
-@app.route('/blog/archive')
-@app.route('/blog/archive/<year>')
-@app.route('/blog/archive/<year>/<month>')
-@app.route('/blog/archive/<year>/<month>/<int:page>')
+# possible TODO: make links to archives, categories, etc. be a word cloud
+@app.route('/blog/archives')
+@app.route('/blog/archives/<year>')
+@app.route('/blog/archives/<year>/<month>')
+@app.route('/blog/archives/<year>/<month>/<int:page>')
 def blog_archive(year=2013, month=None, page=1):
 	posts = [p for p in get_posts_by_timestamp(year, month)]	
-	title = 'Blog Archive'
-	if page != 1:
-		title = title + " Page "+str(page)
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts))
+	title = 'Blog Archive {} {} {} {} {}'.format('-' if month else '', num_to_month[int(month)] if month else '', year,  'Page ' if page != 1 else '', str(page) if page != 1 else '')		
+	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
 
 @app.route('/blog/categories')
 @app.route('/blog/categories/<category>')
@@ -113,7 +139,7 @@ def blog_categories(category=None, page=1):
 		title = title + category.title()
 	if page != 1:
 		title = title + " Page "+str(page)	
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts))	
+	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
 
 @app.route('/blog/tags')
 @app.route('/blog/tags/<tag>')
@@ -124,7 +150,7 @@ def blog_tags_tag(tag=None, page=1):
 		title = title + tag.title()
 	if page != 1:
 		title = title + " Page "+str(page)	
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts))	
+	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
 
 @app.route('/blog/authors')
 @app.route('/blog/authors/<author>')	
@@ -132,10 +158,10 @@ def blog_author(author=None, page=1):
 	title = 'Blog Authors'
 	if not author:
 		author = 'ryan'
-	author = User.query.filter_by(nickname=author).first()
+	author = User.query.filter_by(nickname=author).first_or_404()
 	posts = Post.query.filter_by(user_id=author.id).paginate(page, app.config['POSTS_PER_PAGE'], False).items
 	if author:
-		title = title + author.nickname
+		title = title + " - "+author.nickname
 	if page != 1:
 		title = title + ' Page '+str(page)
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts))	
+	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
