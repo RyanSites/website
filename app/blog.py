@@ -100,7 +100,7 @@ def add_post():
 @app.route('/blog')
 def blog():
 	posts = Post.query.paginate(1, app.config['POSTS_PER_PAGE'], False).items		
-	return render_template('blog.html', title='Blog Postings', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
+	return render_template('blog.html', title='Blog Postings | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
 
 @app.route('/blog/page')
 @app.route('/blog/page/<int:page>')
@@ -109,14 +109,14 @@ def blog_page(page=1):
 	title = 'Blog'
 	if page != 1:
 		title = title + " Page "+str(page)
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
+	return render_template('blog.html', title=title+' | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
 
 @app.route('/blog/posts/<post>')
 def blog_post(post):
 	post = Post.query.filter_by(slug = post).first_or_404()	
 	title = 'Blog Posting'
 	next, previous = get_next_previous_post(post)
-	return render_template('post.html', post=post, title=title, \
+	return render_template('post.html', post=post, title=title+' | BR Graphic Design', \
 		date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), \
 		author=get_authors([post])[0], all_posts=get_all_posts(), next=next, previous=previous)
 
@@ -128,7 +128,7 @@ def blog_post(post):
 def blog_archive(year=2013, month=None, page=1):
 	posts = [p for p in get_posts_by_timestamp(year, month)]	
 	title = 'Blog Archive {} {} {} {} {}'.format('-' if month else '', num_to_month[int(month)] if month else '', year,  'Page ' if page != 1 else '', str(page) if page != 1 else '')		
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
+	return render_template('blog.html', title=title+' | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())
 
 @app.route('/blog/categories')
 @app.route('/blog/categories/<category>')
@@ -139,7 +139,7 @@ def blog_categories(category=None, page=1):
 		title = title + category.title()
 	if page != 1:
 		title = title + " Page "+str(page)	
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
+	return render_template('blog.html', title=title+' | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
 
 @app.route('/blog/tags')
 @app.route('/blog/tags/<tag>')
@@ -150,7 +150,7 @@ def blog_tags_tag(tag=None, page=1):
 		title = title + tag.title()
 	if page != 1:
 		title = title + " Page "+str(page)	
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
+	return render_template('blog.html', title=title+' | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
 
 @app.route('/blog/authors')
 @app.route('/blog/authors/<author>')	
@@ -164,4 +164,4 @@ def blog_author(author=None, page=1):
 		title = title + " - "+author.nickname
 	if page != 1:
 		title = title + ' Page '+str(page)
-	return render_template('blog.html', title=title, date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
+	return render_template('blog.html', title=title+' | BR Graphic Design', date_navigation=get_blog_dates(), tag_navigation=get_blog_tags(),  category_navigation=get_blog_categories(), posts=posts, authors=get_authors(posts), all_posts=get_all_posts())	
