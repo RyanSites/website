@@ -17,22 +17,34 @@ def get_blog_dates(qty=10):
 	months = {}
 	for post in Post.query.all():		
 		my_date = post.timestamp
-		months[(my_date.year, my_date.month)] += 1	
-	return months.most_common(qty)
+		if (my_date.year, my_date.month) in months:
+			months[(my_date.year, my_date.month)] += 1	
+		else:
+			months[(my_date.year, my_date.month)] = 1	
+	for x in sorted(months, key=lambda x:months[x])[0:qty]:
+		yield x, months[x]	
 
 def get_blog_tags(qty=10):
 	tags = {}
 	for post in Post.query.all():
 		for tag in post.tags:
-			tags[(tag.title, tag.slug)] += 1
-	return tags.most_common(qty) 
+			if (tag.title, tag.slug) in tags:
+				tags[(tag.title, tag.slug)] += 1
+			else:
+				tags[(tag.title, tag.slug)] = 1
+	for x in sorted(tags, key=lambda x:tags[x])[0:qty]:
+		yield x, tags[x]
 
 def get_blog_categories(qty=10):
-	categories = Counter()
+	categories = {}
 	for post in Post.query.all():
 		for category in post.categories:
-			categories[(category.title, category.slug)] += 1
-	return categories.most_common(qty) 
+			if (category.title, category.slug) in categories:
+				categories[(category.title, category.slug)] += 1
+			else:
+				categories[(category.title, category.slug)] = 1
+	for x in sorted(categories, key=lambda x:categories[x])[0:qty]:
+		yield x, categories[x]
 
 def get_authors(posts):
 	authors = []
