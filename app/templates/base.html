@@ -54,16 +54,7 @@
 			</nav>
 			{% endblock %}
 		</div>
-		</header> 
-		{% with messages = get_flashed_messages() -%}
-	    	{% if messages -%}
-			    <ul>
-			    {% for message in messages -%}
-			        <li>{{ message }} </li>
-			    {% endfor -%}
-			    </ul>
-		    {% endif -%}
-	    {% endwith -%}
+		</header> 		
 		<article id="content-wrapper" class="row">
 		    <nav id='sidebar' class='large-2 columns side-nav'>
 		    	<h1 class='element-invisible'>Sidebar navigation</h1>
@@ -90,7 +81,16 @@
 				</div>
 			</nav>
 			<div class='large-10 columns'> 
-				<h1 class='small-center title'>{{title}}</h1>	  							
+				<h1 class='small-center title'>{{title}}</h1>	  
+				{% with messages = get_flashed_messages() -%}
+			    	{% if messages -%}
+					    <ul>
+					    {% for message in messages -%}
+					        <li>{{ message }} </li>
+					    {% endfor -%}
+					    </ul>
+				    {% endif -%}
+		    	{% endwith -%}							
 				{% if testimonial %}
 				<div  style="" class="">
 					<div class=''>
