@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, g, request, session, url_for
+from flask.ext.mail import Message
 from app import app, db
 from forms import LoginForm, ContactForm, TestimonialForm
 from models import User, Client, Testimonial, Service, Service_image, Post, Category, Tag, Comment, ContactFormResponse
@@ -9,6 +10,9 @@ from flask.ext.admin import BaseView, expose, Admin, AdminIndexView
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.admin.contrib.fileadmin import FileAdmin
 import os.path as op
+from flask.ext.mail import Mail
+
+mail = Mail(app)
 
 @app.route('/')
 @app.route('/index')
@@ -95,7 +99,10 @@ def contact():
         c = ContactFormResponse(name=form.name.data, company=form.company.data, phone_number=form.phone_number.data, body=form.body.data, email=form.email.data, preference=form.preference.data, timestamp=datetime.utcnow())
         db.session.add(c)
         db.session.commit()        
+        msg = Message("Contact Form Submission",                 sender="contact_form@brgdonline.com",                  recipients=["info@brgdonline.com", 'brandy@brgdonline.com'])
+        msg.body = "Name: {!s}\nCompany: {!s}\nPhone: {!s}\nEmail: {!s}\nPreference: {!s}\n Timestamp: {!s}\nBody: {!s}".format(form.name.data, form.company.data, form.phone_number.data, form.email.data, form.preference.data, datetime.utcnow(), form.body.data)
         flash('Thank you for your submission.')        
+        mail.send(msg)
     else:
         flash_errors(form)
     return render_template('contact.html', 
