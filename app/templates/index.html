@@ -29,42 +29,50 @@
 		    </ul>
 	    {% endif %}
     {% endwith %}
-    <div id="front-page-montage" class="row m-top">
+    <div id="front-page-montage" class="row m-top show-for-medium-up">
 		<div class='row'>
 			<div class='large-3 columns'>
 				<a title="Gordon Food Service" href="/clients/gfs-marketplace"><img class="col gapr" src="/static/img/1.jpg" alt="Gordon Food Service"></a>
 			</div>
 			<div class='large-5 columns'>
-        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="col gapr" src="/static/img/2.jpg" alt="Full Circle Bodyworks"></a>
+        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks">
+        			<img class="col gapr" src="/static/img/2.jpg" alt="Full Circle Bodyworks">
+    			</a>
     		</div>
     		<div class="large-4 columns">
                 <a title="A Massage on the River" href="/clients/a-massage-on-the-river">
                 	<img src="/static/img/3.gif" alt="A Massage On The River">
             	</a>
-                <a title="Whipped" href="/clients/whipped"><img src="/static/img/4.jpg" alt="Whipped"></a>
+            	<div class='m-top'>
+                	<a title="Whipped" href="/clients/whipped"><img src="/static/img/4.jpg" alt="Whipped"></a>
+            	</div>
         	</div>
     	</div>
     	<div class='row'>
     		<div class='large-7 columns'>
-	        	<a title="Advocates 4 Animals" href="/clients/advocates-4-animals-inc"><img class="m-top col gapr"  style="clear:left;overflow:hidden;max-height:197px" width=345px height=197px src="/static/img/5.gif" alt="Advocates 4 Animals"></a>
-	        	<div class='large-6 columns'>
+	        	<a title="Advocates 4 Animals" href="/clients/advocates-4-animals-inc">
+	        		<img class="m-top col gapr"  style="clear:left;overflow:hidden;max-height:197px" width=345px height=197px src="/static/img/5.gif" alt="Advocates 4 Animals">
+        		</a>
+	        	<div class='large-6 m-top columns'>
 	        		<a title="Jordan Ross Music" href="/clients/jordan-ross-music"><img class="m-top col gapr" style="clear:left" src="/static/img/7.jpg" alt="Jordan Ross Music"></a>
         		</div>
-        		<div class='large-6 columns'>
+        		<div class='large-6 m-top columns'>
 	        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="m-top col gapr" src="/static/img/8.jpg" alt="Full Circle Bodyworks"></a>               
 	        	</div>
         	</div>
-        	<div class='large-5 columns'>
+        	<div class='m-top large-5 columns'>
 	        	<a title="Dayton Defense Educational Foundation" href="/clients/dayton-defense-educational-foundation">
 	        		<img class="m-top" src="/static/img/6.jpg" alt="Dayton Defense Educational Foundation">
         		</a>
-	        	<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="m-top " style="" src="/static/img/9.gif" alt="Full Circle Bodyworks"></a>        
+        		<div class='m-top'>
+	        		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks"><img class="m-top " style="" src="/static/img/9.gif" alt="Full Circle Bodyworks"></a>        
+        		</div>
         	</div>	        
         </div>
       </div>
       <div id="services-area" class="periwinkle m-top container">
 		<!-- <h1 class='element-invisible'>Services we provide</h1> -->
-		<div class="row">
+		<div class="row small-center">
 		  <div class="large-4 columns m-bottom">
 			  <ul>
 				  <li><h2 class="m-top"><a href='/services/website-design' title='Website Design'>Website Design</a></h2></li>
@@ -84,9 +92,9 @@
 		  <div id="services-image" class="large-4 columns center">
 			  <a href="{{url_for('services')}}" title='Our Services'><img  src="/static/img/ourservices.png" alt="Our Services"></a>
 		  </div>
-		  <div class="large-4 columns last m-bottom" style="text-align:right">
+		  <div id='services-area-right' class="large-4 columns m-bottom" >
 			  <ul>
-				  <li><h2 class="m-top  ff1"><a href='/services/print-design' title='Print Design'>Print Design</a></h2></li>
+				  <li><h2 class="m-top ff1"><a href='/services/print-design' title='Print Design'>Print Design</a></h2></li>
 				  <li>Business Cards and Letterhead</li>
 				  <li>Tradeshow Materials</li>
 				  <li>Posters and Signs</li>
