@@ -79,6 +79,7 @@
 <script type='text/javascript' src='/static/js/foundation.js'></script>    
 <script type='text/javascript' src='/static/js/foundation.orbit.js'></script>    
 <script type="text/javascript" src="/static/js/custom.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 <script>
 $(document).foundation('orbit', {
   animation_speed: 1500,
@@ -107,6 +108,9 @@ $('.piped_nav li').each(function(){
         totalWidth = 0;
     }
 });    
+</script>
+<script>  
+    $("a[rel]").overlay({mask: '#000'});  
 </script>
 
 <!--<script type="text/javascript" defer>
