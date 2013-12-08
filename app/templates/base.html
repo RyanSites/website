@@ -2,11 +2,11 @@
 	<section class="service m-bottom m-top mid_blue large-12 columns ">
 	  <div class="large-7 columns" style="">	    
     	<ul class='' data-orbit>				
-			{% for img in images %}
+			{% for img in images -%}
 					<li class="panel-wrapper">
 						<img alt="Slideshow slide" src="{{img.uri}}">
 					</li>
-			{% endfor %}
+			{% endfor -%}
 		</ul>
 	</div>
 	<div class="large-5 columns service-description">
@@ -22,8 +22,8 @@
 		</div>				
 	</div> 
 	</section>
-{%- endmacro %}
-{% include 'head.html' %}
+{%- endmacro -%}
+{% include 'head.html' -%}
 <body>
 	<div id="page_wrapper" class="">
 	  <header class="row">	  
@@ -44,26 +44,26 @@
 		  	<nav class="">
 				<h1 class='element-invisible'>Main Navigation</h1>  
 			    <ul class="piped_nav small-block-grid-1 large-block-grid-6" >
-				     <li class="{% if request.endpoint and 'about' in request.endpoint %}active{% endif %}"><a href="{{url_for('about')}}" alt="About us">about</a></li>		      
-				     <li class="{% if request.endpoint and 'services' in request.endpoint and 'portfolio' not in request.endpoint %}active{% endif %}"><a href="{{url_for('services')}}" alt="Services we offer">services</a></li>
-				     <li class="{% if request.endpoint and ('portfolio' in request.endpoint or 'client' in request.endpoint) %}active{% endif %}"><a href="{{url_for('portfolio')}}" alt="Our portfolio">portfolio</a></li>
-				     <li class="{% if request.endpoint and 'blog' in request.endpoint %}active{% endif %}"><a href="{{url_for('blog')}}" alt="Blog">blog</a></li>
-				     <li class="{% if request.endpoint and 'client-portal' in request.endpoint %}active{% endif %}"><a href="{{url_for('client_portal')}}" alt="Client Portal">portal</a></li>
-				     <li class="{% if request.endpoint and 'contact' in request.endpoint %}active{% endif %}"><a href="{{url_for('contact')}}" alt="Contact us">contact</a></li>   
+				     <li class="{% if request.endpoint and 'about' in request.endpoint %}active{% endif %}"><a href="{{url_for('about')}}" title="About us">about</a></li>		      
+				     <li class="{% if request.endpoint and 'services' in request.endpoint and 'portfolio' not in request.endpoint %}active{% endif %}"><a href="{{url_for('services')}}" title="Services we offer">services</a></li>
+				     <li class="{% if request.endpoint and ('portfolio' in request.endpoint or 'client' in request.endpoint) %}active{% endif %}"><a href="{{url_for('portfolio')}}" title="Our portfolio">portfolio</a></li>
+				     <li class="{% if request.endpoint and 'blog' in request.endpoint %}active{% endif %}"><a href="{{url_for('blog')}}" title="Blog">blog</a></li>
+				     <li class="{% if request.endpoint and 'client-portal' in request.endpoint %}active{% endif %}"><a href="{{url_for('client_portal')}}" title="Client Portal">portal</a></li>
+				     <li class="{% if request.endpoint and 'contact' in request.endpoint %}active{% endif %}"><a href="{{url_for('contact')}}" title="Contact us">contact</a></li>   
 			    </ul>
 			</nav>
 			{% endblock %}
 		</div>
 		</header> 
-		{% with messages = get_flashed_messages() %}
-	    	{% if messages %}
+		{% with messages = get_flashed_messages() -%}
+	    	{% if messages -%}
 			    <ul>
-			    {% for message in messages %}
+			    {% for message in messages -%}
 			        <li>{{ message }} </li>
-			    {% endfor %}
+			    {% endfor -%}
 			    </ul>
-		    {% endif %}
-	    {% endwith %}
+		    {% endif -%}
+	    {% endwith -%}
 		<article id="content-wrapper" class="row">
 		    <nav id='sidebar' class='large-2 columns side-nav'>
 		    	<h1 class='element-invisible'>Sidebar navigation</h1>

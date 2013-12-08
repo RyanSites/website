@@ -13,11 +13,20 @@
 		<script type='text/javascript' src='/static/js/modernizr.js?ver=3.4.2'></script>
 		<meta name="generator" content="Flask" />
 		<link rel="author" href="https://plus.google.com/100727097241197114540" />
+		{% if not seo_description -%}
+		{% set seo_description = 'BR Graphic Design is a full service graphic design studio serving the Dayton, Ohio area. Specialties include custom website design, corporate identity, print design, and consulting services.' -%}
+		{% endif -%}
+		{% if not seo_keywords -%}
+		{% set seo_keywords = 'BR Graphic Design, Web Development, Graphic Design, Dayton Ohio' -%}
+		{% endif -%}
 		<meta name="description" content="{{seo_description}}" />
 		<meta name="keywords" content="{{seo_keywords}}" />
 		<meta name="revisit-after" content="1 month">			
-		{% if previous %}
-		{% endif %}
-		{% if next %}
-		{% endif %}
+		<link rel="canonical" href="http:/brgdonline.com{{request.path}}" />		
+		{% if previous -%}
+		<link rel="previous" href="{{previous}}" />
+		{% endif -%}
+		{% if next -%}
+		<link rel="next" href="{{next}}" />
+		{% endif -%}
 	</head>
