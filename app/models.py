@@ -116,6 +116,9 @@ class Service_image(db.Model):
 	uri = db.Column(db.String)
 	service_id = db.Column(db.Integer, db.ForeignKey('services.id'))
 
+	def __repr__(self):
+		return "Service_image(id='%s', service_id='%s', uri='%s')"%(self.id, self.service_id, self.uri)
+
 class Testimonial(db.Model):
 	__tablename__ = 'testimonials'
 	id = db.Column(db.Integer, primary_key = True)
