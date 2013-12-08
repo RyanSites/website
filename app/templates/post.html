@@ -48,16 +48,24 @@
 		</div>
 	</section>
 	<section id='blog_next_previous' class='row m-top'>
-		{% if previous %}
-			<div class='large-6 columns'>			
-				{{utilities.blog_right_sidebar([previous])}}			
-			</div>
-		{% endif %}
-		{% if next %}
+		{% if previous -%}
+			<div class='large-6 columns'>
+				<div class="large-6 columns">
+					<h1 class=""><a title="{{post.title}}" href="/blog/posts/{{post.slug}}">{{post.title}}</a></h1>
+					<span><a title="{{post.title}}" href="/blog/posts/{{post.slug}}">&lt; READ MORE </a></span>
+		      	</div>		
+	      		<div class="large-6 columns ">
+		  			<a title="{{post.title}}" href="/blog/posts/{{post.slug}}" class='th'>	    
+		    			<img width="109" height="67" title="" alt="" class="bordered wp-post-image" src="{{post.img}}">	  
+	    			</a>      	     
+		    	</div>
+	    	</div>	
+		{% endif -%}
+		{% if next -%}
 			<div class='large-6 columns'>			
 				{{utilities.blog_right_sidebar([next])}}			
 			</div>
-		{% endif %}
+		{% endif -%}
 	</section>
 	{% if related %}
 		<section class='row m-top'>
@@ -83,7 +91,7 @@
 		  <p style="margin:0 ">937.308.3316 | <a href="mailto:in%66o%40b%72%67don%6Cine.%63%6Fm">info@brgdonline.com</a></p>
 		  <p><a title="Home Page" href="{{url_for('index')}}">www.brgdonline.com</a></p>
 		  <h1 class="m-top bold">Share This Article</h1>	
-		  <ul>
+		  <ul class='piped_nav'>
 			  <li><a href="mailto:?subject={title}&body=">Email</a></li>
 	          <li><a href="#" onClick="window.print()">Print</a></li>
 	          <li><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-count="none">Tweet</a>
