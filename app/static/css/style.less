@@ -10,6 +10,8 @@
 @hmar:1%;
 @vmar:.5em;
 
+@border: 1px solid #ECE8E4;
+
 .element-invisible {position: absolute;clip: rect(0px, 0px, 0px, 0px);}
 .center{text-align: center}
 
@@ -191,7 +193,7 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 /* SERVICES */
 #services{
 	ul li:first-child{list-style-type:none};
-	h1{font-size:1.1rem;}
+	h1{font-size:1.1rem;.ff3}
 }
 #services_website_design, #services_print_design, #services_corporate_identity, #services_other_services{
 	font-size:1.1rem;
@@ -221,12 +223,13 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 	h1{font-size:1.2rem;font-weight: bold}
 	time, address, .comments_link{font-size: .8rem}
 	h1,ul{margin: 0}	
-	ul{padding:0;}
+	ul{padding-top:0;}
 	li{list-style-type: none;}
+	ul.piped_nav li:first-child{padding-left:0;}
 	.blog-content{line-height: 1.5}
 	address{font-style: normal}
-	.bordered{border:solid 1px #ECE8E4}
-	#blog_next_previous{margin-top:@vmar*2;
+	.bordered{border:@border}
+	#blog_next_previous{margin-top:@vmar*2;border-top: @border;padding:@vpad 0;
 
 	}
 	#blog_author, #blog_share{min-height: 13rem;
@@ -241,7 +244,7 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 #blog_right_sidebar{
 	h1{font-size:.75rem;font-weight: bold;margin:0}
 	span{font-size:.6rem;}
-	.row{border-bottom:1px solid #ECE8E4;}
+	.row{border-bottom:@border;padding:@vpad 0;}
 }
 
 /* PORTFOLIO */
@@ -269,5 +272,6 @@ footer{padding-top:@vmar/2;font-size:.8rem;.ff3;
 
 /* CONTACT */
 form [class*="column"] + [class*="column"]:last-child{float:left;}
+textarea{height:8rem;}
 
 @media only screen and (max-width: 40em) {.small-center{text-align:center} } 
