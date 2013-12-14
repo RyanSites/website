@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import 'utilities.html' as utilities %}
 {% block description %}
 <p>BR Graphic Design is a full service graphic design company. Whether you need a trifold brochure, or a custom-designed website, our team has the education and real-world experience to assist you. Below is a sampling of our offerings.</p>
 <div class="m-top center black_t ff1 " style=""><a href="{{url_for('portfolio')}}" title="Our portfolio">Click here to view our portfolio</a></div>
@@ -65,5 +66,5 @@
 		</ul>
 	</section>	 
 </div>
+{{ utilities.make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}
 {% endblock %}
-{{ make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}

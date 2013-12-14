@@ -1,4 +1,5 @@
 {% extends "services.html" %}
+{% import 'utilities.html' as utilities %}
 {% block description %}
 <p>A powerful online presence is an important tool for any successful business. As a 24/7 information hub, a website allows current and prospective customers to really learn about an organization’s core values, products, and services. At BR Graphic Design, we take this very seriously. Each website is 100% custom designed and carefully crafted to project a unique look and feel for our clients.</p>
 {% endblock %}
@@ -44,4 +45,5 @@
 		</ul>
 	</div>
 </section>
+{{ utilities.make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}
 {% endblock %}

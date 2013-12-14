@@ -1,4 +1,5 @@
 {% extends "services.html" %}
+{% import 'utilities.html' as utilities %}
 {% block description %}
 <p>A corporate identity, or “company persona” is one of the most important aspects of marketing a business. By branding or using trademarks, a company’s corporate identity can be visually manifested for lasting public recognition. At BR Graphic Design, we take the time to really get to know your business, competition, and business objectives. We use that information to build a lasting identity, which makes your company more distinguishable and appealing to your target audience.</p>
 {% endblock %}
@@ -17,4 +18,5 @@
 		<li>Tradeshow Booth Design</li>
 	</ul>
 </div>
+{{ utilities.make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}
 {% endblock %}

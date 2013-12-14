@@ -1,4 +1,5 @@
 {% extends "services.html" %}
+{% import 'utilities.html' as utilities %}
 {% block description %}
 <p>Printed materials are an important part of a company’s sales and marketing strategies. Professionally designed brochures and collateral are sure to attract both prospects and customers alike to your company’s products and services. Whether your organization needs a simple sell sheet, or 10,000 trifold brochures, please consider BR Graphic Design for a custom, professional design.
 </p>
@@ -16,4 +17,5 @@
 		<li><a href="{{url_for('portfolio_print_design')}}" title="Print Design Portfolio">Sell Sheets</a></li>
 	</ul>
 </div>
+{{ utilities.make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}
 {% endblock %}

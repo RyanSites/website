@@ -1,4 +1,5 @@
 {% extends "services.html" %}
+{% import 'utilities.html' as utilities %}
 {% block description %}
 <p>A number of services need to come together seemlessly during the crafting of a corporate identity. For example, photography, social media setup, or consulting services may not be included in a standard website or print design package. That’s why at BR Graphic Design, we strive to offer you a full range of service products so that you can rest assured that your entire corporate identity package will be crafted with consistency.
 </p>
@@ -14,4 +15,5 @@
 		<li>Copywriting</li>
 	</ul>
 </div>
+{{ utilities.make_slideshow(slideshow[1], slideshow[0], slideshow[2]) }}
 {% endblock %}
