@@ -1,28 +1,3 @@
-{% macro make_slideshow(service, client, images) -%}
-	<section class="service m-bottom m-top mid_blue large-12 columns ">
-	  <div class="large-7 columns" style="">	    
-    	<ul class='' data-orbit>				
-			{% for img in images -%}
-					<li class="panel-wrapper">
-						<img alt="Slideshow slide" src="{{img.uri}}">
-					</li>
-			{% endfor -%}
-		</ul>
-	</div>
-	<div class="large-5 columns service-description">
-		<div>
-			<h1 class="">
-				<a title="Go to the client page" href="/clients/{{client.slug}}">{{service.title}}</a>
-			</h1>
-		  	<h2 class="element-invisible">For customer {{client.title}}</h2>
-			<time class="element-invisible" pubdate="{{service.timestamp}}">{{service.timestamp}}</time>
-		</div>
-		<div class="m-top">
-	  		{{service.body}}
-		</div>				
-	</div> 
-	</section>
-{%- endmacro -%}
 {% include 'head.html' -%}
 <body>
 	<div id="page_wrapper" class="">
