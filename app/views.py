@@ -11,6 +11,7 @@ from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.admin.contrib.fileadmin import FileAdmin
 import os.path as op
 from flask.ext.mail import Mail
+# from flask.ext.images import Images
 
 mail = Mail(app)
 
