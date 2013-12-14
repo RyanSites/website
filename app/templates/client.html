@@ -1,3 +1,4 @@
+{% import 'utilities.html' as utilities %}
 {% extends 'portfolio_derived.html' %}
 
 {% block description %}
@@ -8,6 +9,6 @@
 
 {% block content %}
 	{% for service, images in services %}
-		{{make_slideshow(service, client, images)}}
+		{{utilities.make_slideshow(service, client, images)}}
 	{% endfor %}
 {% endblock %}
