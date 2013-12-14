@@ -14,9 +14,9 @@ class User(db.Model):
 	lastname = db.Column(db.String(64))
 	email = db.Column(db.String(120), unique = True)
 	role = db.Column(db.SmallInteger, default = ROLE_USER)
-	description = db.Column(db.String)
-	image = db.Column(db.String)
-	pw_hash = db.Column(db.String)
+	description = db.Column(db.String(2048))
+	image = db.Column(db.String(256))
+	pw_hash = db.Column(db.String(1024))
 
 	def __init__(self, nickname, password, firstname=None, lastname=None, email=None):
 		self.nickname=nickname
@@ -51,12 +51,12 @@ categories = db.Table('categories', db.Column('category_id', db.Integer, db.Fore
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
-	body = db.Column(db.String)
+	body = db.Column(db.String(4096))
 	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-	title = db.Column(db.String)
-	img = db.Column(db.String)
-	slug = db.Column(db.String, unique=True)
+	title = db.Column(db.String(128))
+	img = db.Column(db.String(256))
+	slug = db.Column(db.String(128), unique=True)
 	categories = relationship('Category', secondary=categories, backref=backref('posts', lazy='dynamic'))
 	tags = relationship('Tag', secondary=tags, backref=backref('posts', lazy='dynamic'))
 	comment = relationship('Comment', backref='Post', lazy='dynamic')
@@ -66,34 +66,34 @@ class Post(db.Model):
 
 class Category(db.Model):
 	id  = db.Column(db.Integer, primary_key=True)
-	slug= db.Column(db.String)
-	title = db.Column(db.String, unique=True)
+	slug= db.Column(db.String(128))
+	title = db.Column(db.String(128), unique=True)
 
 	def __repr__(self):
 		return "Category(id='%s', slug='%s', title='%s')"%(self.id, self.slug, self.title)
 
 class Tag(db.Model):
 	id  = db.Column(db.Integer, primary_key=True)
-	slug= db.Column(db.String)
-	title = db.Column(db.String, unique=True)	
+	slug= db.Column(db.String(128))
+	title = db.Column(db.String(128), unique=True)	
 
 	def __repr__(self):
 		return "Tag(id='%s', slug='%s', title='%s')"%(self.id, self.slug, self.title)
 
 class Comment(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	author = db.Column(db.String)
-	body = db.Column(db.String)	
+	author = db.Column(db.String(128))
+	body = db.Column(db.String(2048))	
 	post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
 class Client(db.Model):
 	__tablename__ = 'clients'
 	id = db.Column(db.Integer, primary_key = True)
-	title = db.Column(db.String, unique=True)
+	title = db.Column(db.String(128), unique=True)
 	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
-	body = db.Column(db.String)
-	client_url = db.Column(db.String )
-	slug = db.Column(db.String)
+	body = db.Column(db.String(1024))
+	client_url = db.Column(db.String(128) )
+	slug = db.Column(db.String(128))
 
 	def __repr__(self):
 		return "Client(id='%s', title='%s', timestamp='%s', body='%s')"%(self.id, self.title, self.timestamp, self.body)
@@ -102,9 +102,9 @@ class Service(db.Model):
 	__tablename__ = 'services'
 	id = db.Column(db.Integer, primary_key = True)
 	client_id = db.Column(db.Integer, db.ForeignKey('clients.id'))
-	title = db.Column(db.String, unique=True)
+	title = db.Column(db.String(128), unique=True)
 	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
-	body = db.Column(db.String)
+	body = db.Column(db.String(1024))
 	service_type = db.Column(db.Integer)
 	images = relationship("Service_image", backref="Service", lazy='dynamic')
 
@@ -113,7 +113,7 @@ class Service(db.Model):
 
 class Service_image(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	uri = db.Column(db.String)
+	uri = db.Column(db.String(128))
 	service_id = db.Column(db.Integer, db.ForeignKey('services.id'))
 
 	def __repr__(self):
@@ -123,7 +123,7 @@ class Testimonial(db.Model):
 	__tablename__ = 'testimonials'
 	id = db.Column(db.Integer, primary_key = True)
 	client_id = db.Column(db.Integer, db.ForeignKey('clients.id'))
-	body = db.Column(db.String)
+	body = db.Column(db.String(2048))
 	poc = db.Column(db.String(50))
 	poc_title = db.Column(db.String(50))
 	poc_company = db.Column(db.String(100))
@@ -135,10 +135,10 @@ class Testimonial(db.Model):
 class ContactFormResponse(db.Model):
 	__tablename__ = 'contactformresponse'
 	id = db.Column(db.Integer, primary_key = True)
-	name = db.Column(db.String)
-	body = db.Column(db.String)
+	name = db.Column(db.String(128))
+	body = db.Column(db.String(2048))
 	phone_number = db.Column(db.String(15))
-	company = db.Column(db.String)
+	company = db.Column(db.String(128))
 	email = db.Column(db.String(40))
 	preference = db.Column(db.Integer)
 	timestamp = db.Column(db.DateTime)
