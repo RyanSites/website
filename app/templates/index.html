@@ -20,10 +20,10 @@
 		 </nav>
        	</div>
     </header>
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages() -%}
     	{% if messages %}
 		    <ul>
-		    {% for message in messages %}
+		    {% for message in messages -%}
 		        <li>{{ message }} </li>
 		    {% endfor %}
 		    </ul>
@@ -32,7 +32,7 @@
     <div id="front-page-montage" class="row m-top show-for-medium-up">
 		<div class='row'>
 			<div class='large-3 columns'>
-				<a title="Gordon Food Service" href="/clients/gfs-marketplace"><img class="col gapr" src="/static/img/1.jpg" alt="Gordon Food Service"></a>
+				<a title="Gordon Food Service" href="/clients/gfs-marketplace"><img src="/static/img/1.jpg" alt="Gordon Food Service"></a>
 			</div>
 			<div class='large-5 columns'>
         		<a title="Full Circle Bodyworks" href="/clients/full-circle-bodyworks">
