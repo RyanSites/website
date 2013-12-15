@@ -28,23 +28,23 @@ def get_testimonial_by_client(id):
 
 def prepare_slideshow(typ):
 	##[(0, 'website'), (1, 'corporate'), (2, 'print'), (3, 'other')]
-	result = []
-	for service in Service.query.filter_by(service_type=typ):
-		client = Client.query.filter_by(id=service.client_id).first()
-		images = Service_image.query.filter_by(service_id=service.id)
-		if images:
-			result.append( (client, service, images) )
-	return result
+    result = []
+    for service in Service.query.filter_by(service_type=typ):
+    	client = Client.query.filter_by(id=service.client_id).first()
+    	images = Service_image.query.filter_by(service_id=service.id)
+    	if images:
+    		result.append( (client, service, images) )    
+    return result
 
 def get_random_slideshow(typ=None):
     if typ == None:
         typ = choice([0, 1, 2, 3])
-	try:
-		x = choice(prepare_slideshow(typ))
-	except IndexError:
-		return []
-	else:
-		return x
+    try:
+    	x = choice(prepare_slideshow(typ))
+    except IndexError:
+    	return []
+    else:
+	return x
 
 def get_client_services(client_id):
 	return Service.query.filter_by(client_id=client_id)
