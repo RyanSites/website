@@ -258,6 +258,7 @@ def internal_error_403(error):
 
 @app.errorhandler(404)
 def internal_error(error):
+    app.logger.warning('404 - '+str(request))
     return render_template('404.html', title='Page Not Found  | BR Graphic Design'), 404
 
 

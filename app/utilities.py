@@ -36,7 +36,9 @@ def prepare_slideshow(typ):
 			result.append( (client, service, images) )
 	return result
 
-def get_random_slideshow(typ):
+def get_random_slideshow(typ=None):
+    if typ == None:
+        typ = choice([0, 1, 2, 3])
 	try:
 		x = choice(prepare_slideshow(typ))
 	except IndexError:
