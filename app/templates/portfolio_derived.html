@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% import 'utilities.html' as utilities %}
 
 {% block sidebar_nav %}	
 	<nav class="m-bottom">
@@ -15,6 +15,6 @@
 {% block content %}		
 	
 	{% for service in services %}
-		{{ make_slideshow(service[1], service[0], service[2]) }}
+		{{ utilities.make_slideshow(service[1], service[0], service[2]) }}
 	{% endfor %}
 {% endblock %}	      
