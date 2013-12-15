@@ -11,8 +11,7 @@
 	    </div>  	  
 	    <div id="main-nav" class="large-6 columns">
 	      <div class="row" style="overflow:visible">
-			<aside id="twitter-feed" class="periwinkle">	
-			
+			<aside id="twitter-feed" class="periwinkle">				
 			</aside>
 	      </div>
 		  	{% block main_navigation %}
@@ -77,7 +76,7 @@
 						<h1 class='element-invisible'>Testimonial</h1>
 						<div class='triangle-obtuse'>
 							<blockquote class='quote-text '>
-								<a rel='#full-quote' >&#8220;{{testimonial.body|truncate}}</a>&#8230;
+								<a rel='#full-quote' >&#8220;{{testimonial.body|truncate|safe}}</a>&#8230;
 							</blockquote>
 							<cite class='m-top'>{{testimonial.poc}}, {{testimonial.poc_title}}<br style='margin-top:0;line-height:50%'>{{testimonial.poc_company}}</cite>
 						</div>
@@ -85,7 +84,7 @@
 				   </div>
 				   <div id='full-quote' class='periwinkle'>
 						<blockquote class='quote-text'>
-							{{testimonial.body}}
+							{{testimonial.body|safe}}
 						</blockquote>
 						<cite>
 							<p>{{testimonial.poc}}, {{testimonial.poc_title}}</p>
