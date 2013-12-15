@@ -203,6 +203,7 @@ def services():
      title='Services | BR Graphic Design',
      navigation=navigation['services'],
      testimonial=get_testimonial(), 
+     slideshow = get_random_slideshow(), 
      user=get_user(),
      seo_keywords='BR Graphic Design, Services, Dayton, Ohio', 
      seo_description='The services BR Graphic Design LLC performs for their clients')
