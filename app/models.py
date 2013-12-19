@@ -20,7 +20,7 @@ class User(db.Model):
 
 	def __init__(self, nickname, password, firstname=None, lastname=None, email=None):
 		self.nickname=nickname
-		self.pw_hash = set_password(password)
+		self.set_password(password)
 		self.firstname = firstname
 		self.lastname  = lastname
 		self.email = email
@@ -51,7 +51,7 @@ categories = db.Table('categories', db.Column('category_id', db.Integer, db.Fore
 
 class Post(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
-	body = db.Column(db.String(4096))
+	body = db.Column(db.Text)
 	timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow())
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 	title = db.Column(db.String(128))
