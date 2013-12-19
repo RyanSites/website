@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, g, request, session, url_for
+from wtforms.fields import TextAreaField
 from flask.ext.mail import Message
 from app import app, db
 from forms import LoginForm, ContactForm, TestimonialForm
@@ -264,6 +265,10 @@ def internal_error(error):
 
 
 class MyAdminIndexView(AdminIndexView):
+    form_overrides = dict(body=TextAreaField)
+
+
+
     def is_accessible(self):
         return 'user_name' in session
 
