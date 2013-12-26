@@ -44,38 +44,3 @@ class ContactForm(Form):
 	body = TextAreaField('body', validators=[Required('Please leave us a message.')])
 	hidden = TextField('hidden',validators=[ShouldBeEmpty])
 
-class ClientForm(Form):
-	client_name = TextField('client_name', validators=[Required()])
-	body = TextAreaField('body', validators=[Required()])
-	client_url = TextField('client_url')
-	slug = TextField('slug', validators=[Required()])
-
-class TestimonialForm(Form):
-	body = TextAreaField('body', validators=[Required()])
-	poc = TextField('poc', validators=[Required()])
-	poc_title = TextField('poc_title')
-	poc_company = TextField('poc_company', validators=[Required()])
-	clients = []
-	for client in models.Client.query.all():
-		clients.append( (client.id, client.title))
-	client = SelectField('client', choices=clients, coerce=int)
-
-class ServiceForm(Form):
-	body = TextAreaField('body', validators=[Required()])
-	service_name = TextField('service_name', validators=[Required()])
-	service_types = [(0, 'website'), (1, 'corporate'), (2, 'print'), (3, 'other')]
-	service_type = SelectField('service_type', choices=service_types, coerce=int)
-	clients = []
-	for client in models.Client.query.all():
-		clients.append( (client.id, client.title))
-	client = SelectField('client', choices=clients, coerce=int)
-
-class PostForm(Form):
-	body = TextAreaField('body', validators=[Required()])
-	title = TextField('title', validators=[Required()])				
-	slug = TextField('slug', validators=[Required()])				
-	categories = [(0, 'None')]+[(category.id, category.title) for category in models.Category.query.all()]
-	tags = [(0, 'None')]+[(tag.id, tag.title) for tag in models.Tag.query.all()]	
-	category = SelectMultipleField('category', choices=categories, coerce=int)
-	tag = SelectMultipleField('tag', choices=tags, coerce=int)
-	img = FileField(validators=[Required()])

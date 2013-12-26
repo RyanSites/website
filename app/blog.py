@@ -3,7 +3,6 @@ from app import app, db
 from utilities import  navigation, flash_errors, allowed_file, login_required
 from models import User, Post, Tag, Category
 from datetime import date
-from forms import PostForm
 from werkzeug import secure_filename
 import os
 
@@ -78,36 +77,6 @@ def get_next_previous_post(post):
 				else:
 					previous = p
 	return next, previous
-
-@login_required
-@app.route('/add/post', methods=['GET', 'POST'])
-def add_post():
-    form = PostForm()
-    if form.validate_on_submit():      	
-        s = Post(body=form.body.data, title=form.title.data, slug=form.slug.data, user_id=session['user_id'])        
-        for cat in form.category.data:
-        	cat = Category.query.filter_by(id=cat).first()
-        	if cat:
-        		s.categories.append( cat)
-        for tag in form.tag.data:
-        	tag = Tag.query.filter_by(id=tag).first()
-        	if tag:
-        		s.tags.append( tag)		
-        my_image = form.img.data  
-        if allowed_file(my_image.filename):
-			filename = secure_filename(my_image.filename)
-			save_to = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-			my_image.save(save_to)
-			db.session.add(s)
-			flash('Successfully uploaded '+save_to)
-			db.session.commit()
-			flash('Successfully added post')
-        else:
-        	flash('Unable to save file')
-        return redirect(url_for('add_post'))
-    else:
-        flash_errors(form)
-    return render_template('add_post.html', form=form, title='Add Post')	
 
 @app.route('/blog')
 def blog():

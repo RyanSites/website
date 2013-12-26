@@ -17,7 +17,7 @@ def get_testimonial(ids=None):
     	testimonials[t.id] = t
     if ids:
     	c = choice(testimonials.keys())
-        return testimonials[c]
+        return testimonials[c]    
     return choice(testimonials.values())
 
 def get_testimonial_by_client(id):
