@@ -101,8 +101,8 @@ def contact():
         c = ContactFormResponse(name=form.name.data, company=form.company.data, phone_number=form.phone_number.data, body=form.body.data, email=form.email.data, preference=form.preference.data, timestamp=datetime.utcnow())
         db.session.add(c)
         db.session.commit()        
-        msg = Message("Contact Form Submission", sender="contact_form@brgdonline.com", recipients=["info@brgdonline.com", 'brandy@brgdonline.com', 'ryan@brgdonline.com'])
-        msg.body = "Name: {!s}\nCompany: {!s}\nPhone: {!s}\nEmail: {!s}\nPreference: {!s}\n Timestamp: {!s}\nBody: {!s}".format(form.name.data, form.company.data, form.phone_number.data, form.email.data, form.preference.data, datetime.utcnow(), form.body.data)
+        msg = Message("Contact Form Submission", sender="contact_form@brgdonline.com", recipients=["info@brgdonline.com", 'brandy@brgdonline.com', 'ryan@brgdonline.com'])         
+        msg.body = "Name: %s\nCompany: %s\nPhone: %s\nEmail: %s\nPreference: %s\n Timestamp: %s\nBody: %s"%(form.name.data, form.company.data, form.phone_number.data, form.email.data, form.preference.data, datetime.utcnow(), form.body.data)
         flash('Thank you for your submission.')        
         mail.send(msg)
     else:
