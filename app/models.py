@@ -144,5 +144,6 @@ class ContactFormResponse(db.Model):
 	timestamp = db.Column(db.DateTime)
 
 	def __repr__(self):
-		return "ContactFormResponse(id='{.id!s}, name='{.name!s}, company='{.company!s}', phone_number='{.phone_number!s}', email='{.email!s}', preference='{.preference!s}', message='{.body!s}', timestamp='{.timestamp!s}')".format(self, self, self, self, self, self, self, self)
+		return "ContactFormResponse(id='{.id!s}, name='{.name!s}, company='{.company!s}', phone_number='{.phone_number!s}', email='{.email!s}', preference='{.preference!s}', body='{.body!s}', timestamp='{.timestamp!s}')"\
+			.format(self, self, self, self, self, self, self, self)
 
