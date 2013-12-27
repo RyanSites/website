@@ -20,7 +20,9 @@
 			    <ul class="piped_nav small-block-grid-1 large-block-grid-6" >
 				     <li class="{% if request.endpoint and 'about' in request.endpoint %}active{% endif %}"><a href="{{url_for('about')}}" title="About us">about</a></li>		      
 				     <li class="{% if request.endpoint and 'services' in request.endpoint and 'portfolio' not in request.endpoint %}active{% endif %}"><a href="{{url_for('services')}}" title="Services we offer">services</a></li>
-				     <li class="{% if request.endpoint and ('portfolio' in request.endpoint or 'client' in request.endpoint) %}active{% endif %}"><a href="{{url_for('portfolio')}}" title="Our portfolio">portfolio</a></li>
+				     <li class="{% if request.endpoint and ('portfolio' in request.endpoint or ('client' in request.endpoint and not 'portal' in request.endpoint) %}active{% endif %}">
+				     	<a href="{{url_for('portfolio')}}" title="Our portfolio">portfolio</a>
+			     	</li>
 				     <li class="{% if request.endpoint and 'blog' in request.endpoint %}active{% endif %}"><a href="{{url_for('blog')}}" title="Blog">blog</a></li>
 				     <li class="{% if request.endpoint and 'client-portal' in request.endpoint %}active{% endif %}"><a href="{{url_for('client_portal')}}" title="Client Portal">portal</a></li>
 				     <li class="{% if request.endpoint and 'contact' in request.endpoint %}active{% endif %}"><a href="{{url_for('contact')}}" title="Contact us">contact</a></li>   
